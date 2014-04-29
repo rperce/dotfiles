@@ -1,0 +1,3 @@
+#!/bin/sh
+rm wallpaper
+ln -s "$1" wallpaper
