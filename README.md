@@ -9,3 +9,5 @@ To use these, simply go to your home directory and run:
     cd .dotfiles
     chmod +x link
     ./link
+
+Existing dotfiles of the same name will be moved to $filename.old.  If such a file exists, probably horrible thing will happen.  There is not yet any update functionality without manually removing the old dotfiles.
