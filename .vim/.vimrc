@@ -32,3 +32,6 @@ command Q q
 filetype plugin indent on
 
 let $PYTHONPATH="/usr/lib/python3.4/site-packages"
+
+map ; :
+noremap ;; ;
