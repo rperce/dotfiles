@@ -36,3 +36,9 @@ let $PYTHONPATH="/usr/lib/python3.4/site-packages"
 
 map ; :
 inoremap jk <Esc>
+
+function! RepeatChar(char, count)
+    return repeat(a:char, a:count)
+endfunction
+nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
