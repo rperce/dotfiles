@@ -50,6 +50,6 @@ fi
 
 bind 'set mark-symlinked-directories=on'
 export EDITOR='/usr/bin/vim'
-export VISUAL='usr/bin/vim'
+export VISUAL='/usr/bin/vim'
 
 
