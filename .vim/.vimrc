@@ -1,5 +1,6 @@
 call pathogen#infect()
 
+set backspace=indent,eol,start
 set nocompatible
 set tw=80
 filetype off
@@ -34,4 +35,4 @@ filetype plugin indent on
 let $PYTHONPATH="/usr/lib/python3.4/site-packages"
 
 map ; :
-noremap ;; ;
+inoremap jk <Esc>
