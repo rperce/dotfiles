@@ -10,6 +10,9 @@ set number
 set cc=80
 set mouse=a
 
+set listchars=tab:\|=,trail:~,extends:>,precedes:<
+set list
+
 set showmatch
 set nowrap
 set autoindent
@@ -32,3 +35,6 @@ command Q q
 filetype plugin indent on
 
 let $PYTHONPATH="/usr/lib/python3.4/site-packages"
+
+inoremap jk <Esc>
+nnoremap ; :
