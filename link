@@ -1,0 +1,12 @@
+#!/bin/sh
+for file in `ls -a`; do
+    case "$file" in
+        link|.git|.gitignore|.|..|README.md)
+            continue
+            ;;
+    esac
+    if [[ -f ../"$file" ]]; then
+        mv ../"$file" ../"$file".old
+    fi
+    ln -s `pwd`/"$file" ../
+done
