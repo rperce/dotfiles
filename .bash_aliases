@@ -14,3 +14,5 @@ alias less='less -R'
 alias ccze='ccze -A'
 
 alias renet='sudo netctl restart `netctl list | grep -Po "(?<=\* )(.+)"`'
+
+alias tmux='tmux -2'
