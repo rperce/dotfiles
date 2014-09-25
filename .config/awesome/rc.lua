@@ -38,14 +38,14 @@ do
 end
 -- }}}
 
-awful.util.spawn_with_shell("unagi &")
+--awful.util.spawn_with_shell("unagi &")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.getdir("config") .. "/themes/custom/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -149,10 +149,6 @@ clocktimer:start()
 alsawidget = require('alsawidget')
 alsamargin = wibox.layout.margin(alsawidget.bar,0,0,4,4)
 
--- wifi widget
-wifi = require('wifi')
-wifi.timer:start()
-
 -- battery widget
 batterywidget = wibox.widget.textbox()
 batterywidget:set_text(" | Battery | ")
@@ -246,7 +242,6 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(wifi.widget)
     right_layout:add(alsamargin)
     right_layout:add(batterywidget)
     right_layout:add(mytextclock)

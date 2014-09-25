@@ -3,7 +3,7 @@ call pathogen#infect()
 set backspace=indent,eol,start
 set nocompatible
 set tw=80
-filetype off
+filetype plugin on
 set laststatus=2
 
 syntax on
@@ -25,7 +25,7 @@ set softtabstop=4
 set bg=dark
 highlight ColorColumn ctermbg=22
 set t_Co=256
-colorscheme wombat256mod
+"colorscheme wombat256mod
 highlight Normal ctermbg=none
 
 command W w

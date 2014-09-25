@@ -16,3 +16,8 @@ alias ccze='ccze -A'
 alias renet='sudo netctl restart `netctl list | grep -Po "(?<=\* )(.+)"`'
 
 alias tmux='tmux -2'
+
+alias texlink='ln -s ~/school/latex/* .'
+alias gs='git status'
+alias gh='git hist'
+alias gc='git commit -a -m'
