@@ -14,6 +14,10 @@ set mouse=a
 set listchars=tab:\|=,trail:~,extends:>,precedes:<
 set list
 
+set backupdir=~/.vim/backup//,.
+set directory=~/.vim/swap//,.
+set undodir=~/.vim/undo//,.
+
 set showmatch
 set nowrap
 set autoindent
@@ -45,3 +49,4 @@ function! RepeatChar(char, count)
 endfunction
 nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+

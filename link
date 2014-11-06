@@ -1,12 +1,64 @@
-#!/bin/sh
-for file in `ls -a`; do
-    case "$file" in
-        link|.git|.gitignore|.|..|README.md)
-            continue
-            ;;
-    esac
-    if [[ -f ../"$file" ]]; then
-        mv ../"$file" ../"$file".old
-    fi
-    ln -s `pwd`/"$file" ../
-done
+#!/usr/bin/ruby
+require 'optparse'
+valids = `ls`.strip.split.select { |t| t != 'link' }
+def dirs(dir) Dir.entries(dir).reject{ |d| d=='.' or d=='..' } end
+
+options = {}
+targets = []
+OptionParser.new do |opts|
+    opts.banner = "Uses GNU stow to link config files for the specified\n"\
+                  "target programs in this directory.\n\n"\
+                  "Usage: link [options] [target] [target]..."
+
+    opts.on("-i","--invert",
+            "Select all targets except those specified",
+            "  (overrides any previous -a)") do |i|
+        options[:invert] = i
+        targets = []
+    end
+    opts.on("-a","--all",
+            "Select all targets",
+            "  (overrides any previous -i and specified targets)") do |a|
+        options[:invert] = false
+        targets = valids
+    end
+    opts.on("-D","--delete",
+            "Unlink specified targets",
+            "  (overrides any previous -R)") do |d|
+        options[:arg] = '-D'
+    end
+    opts.on("-R","--restow",
+            "Unlink then link the specified targets",
+            "  (overrides any previous -D)") do |r|
+        options[:arg] = '-R'
+    end
+    opts.on_tail("-h","--help","Show this message") do
+        puts opts
+    end
+end.parse!
+
+targets = ARGV if targets.empty?
+if targets.empty? then
+    puts "ERROR: provide either a list of targets or -a."
+    exit
+end
+targets.each do |target|
+    if not Dir.exists?(target) then
+        puts "ERROR: #{target} is not a valid target. Expected one of:\n   #{valids.join(", ")}"
+        exit
+    end
+end
+targets = valids - targets if options[:invert]
+
+stowopt = options[:arg] ? options[:arg] + ' ' : ''
+targets.each do |target|
+    str = `stow -n #{stowopt}#{target} 2>&1`
+    if str.include?('WARNING!') then
+        puts str
+        exit
+    end
+end
+targets.each do |target|
+    `stow #{stowopt}#{target}`
+end
+
