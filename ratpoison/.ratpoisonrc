@@ -1,0 +1,7 @@
+alias mc exec /home/robert/mc
+alias ts exec /home/robert/teamspeak/ts3client_runscript.sh
+alias mcts /home/robert/mc; /home/robert/teamspeak/ts3client_runscript.sh
+
+bind M mcts
+bind X quit
+
