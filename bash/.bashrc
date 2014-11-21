@@ -18,7 +18,7 @@ shopt -s histappend
 
 # Two-line Prompt
 first=''
-line='\[\033[0;32m\]'
+line='\[\033[1;32m\]'
 if [[ $EUID -eq 0 ]]; then
     line='\[\033[1;31m\]'
 fi
