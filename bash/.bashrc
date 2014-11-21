@@ -47,8 +47,17 @@ if [ -f "$DOT_PATH_FILE" ]; then
 	export PATH=$PATH:`awk '/^[^#]/{printf "%s",(++x!=1?":":"")$0}' $DOT_PATH_FILE`
 fi
 
+# set colors if in a framebuffer terminal to those of .Xresources
+if [ "$TERM" = "linux" ]; then
+    colors=(\#222222 \#9e5641 \#6c9e55 \#caaf2b \#7fb8d8 \#956d9d \#4c8ea1 \#808080
+            \#454545 \#cc896d \#64e070 \#ffe080 \#b8ddea \#c18fcb \#6bc1d0 \#cdcdcd)
+    for n in $(seq 0 15); do
+        printf '\e]P%x%s' $n $(echo "${colors[$n]}" | tr -d \#)
+    done
+    clear; unset colors
+fi
+
 bind 'set mark-symlinked-directories=on'
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/vim'
-
 
