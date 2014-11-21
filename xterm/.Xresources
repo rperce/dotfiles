@@ -1,0 +1,35 @@
+xterm*termName: xterm-256color
+XTerm*locale: true
+!XTerm*reverseVideo: on
+xterm*faceName: DejaVu Sans Mono:size=10:antialias=true
+xterm*font: 7x13
+
+! modded low contrast
+!black
+*color0: #222222
+*color8: #454545
+!red
+*color1: #9e5641
+*color9: #cc896d
+!green
+*color2: #6c9e55
+*color10: #64e070
+!yellow
+*color3: #caaf2b
+*color11: #ffe080
+!blue
+*color4: #7fb8d8
+*color12: #b8ddea
+!magenta
+*color5: #956d9d
+*color13: #c18fcb
+!cyan
+*color6: #4c8ea1
+*color14: #6bc1d0
+!white
+*color7: #808080
+*color15: #cdcdcd
+
+*borderColor: #343434
+*background: #343434
+*foreground: #cdcdcd
