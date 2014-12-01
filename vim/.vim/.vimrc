@@ -89,8 +89,8 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Indents and lines
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Wrap lines, and autoindent them
-set wrap
+" don't wrap lines, but autoindent them
+set nowrap
 set autoindent
 
 " All I want for Christmas is spaces
@@ -140,7 +140,7 @@ map <C-l> <C-W>l
 " Tab management
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
+map <leader>tx :tabclose<cr>
 
 " Open a new tab with current buffer's path
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/<cr>
@@ -168,11 +168,9 @@ map <leader>kw :call DeleteTrailingWS()<cr>
 " Kill the Windows ^M if the encodings are screwy
 map <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscellaneous
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Need this for powerline, if you use that
 let $PYTHONPATH="/usr/lib/python3.4/site-packages"
-
 

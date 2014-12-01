@@ -1,3 +1,5 @@
+# the space makes following commands expand, so I can sudo commands
+alias sudo='sudo '
 alias fucking='sudo'
 alias q='exit'
 
