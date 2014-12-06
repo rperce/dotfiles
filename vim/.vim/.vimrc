@@ -50,7 +50,7 @@ set tm=500
 
 " Color column at 80
 highlight ColorColumn ctermbg=22
-set cc=80
+set cc=90
 
 " I will probably never not use a dark, 256-color terminal
 set bg=dark
