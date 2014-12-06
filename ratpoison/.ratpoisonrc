@@ -4,4 +4,5 @@ alias mcts /home/robert/mc; /home/robert/teamspeak/ts3client_runscript.sh
 
 bind M mcts
 bind X quit
-
+bind semicolon colon
+bind R restart
