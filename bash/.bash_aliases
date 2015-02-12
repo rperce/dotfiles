@@ -21,5 +21,5 @@ alias tmux='tmux -2'
 
 alias texlink='ln -s ~/school/latex/* .'
 alias gs='git status'
-alias gh='git hist'
+alias gh='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias gc='git commit -a -m'
