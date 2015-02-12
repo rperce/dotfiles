@@ -116,6 +116,7 @@ command WA wa
 " Who wants to move their pinkies?
 map ; :
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 " Map 0 to go to the first non-blank character
 map 0 ^
