@@ -3,4 +3,4 @@
 .config/menus/*
 .config/pcmanfm/*
 .config/pulse/*
-*.netrwhist
+vim/.vim/.netrwhist
