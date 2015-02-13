@@ -89,7 +89,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Indents and lines
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" don't wrap lines, but autoindent them
+" don't softwrap lines, but autoindent them
 set nowrap
 set autoindent
 
@@ -99,7 +99,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-" Wrap text at 90 characters (80 plus some wiggle room)
+" Hard wrap text at 90 characters (80 plus some wiggle room)
 set tw=90
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,6 +168,9 @@ map <leader>kw :call DeleteTrailingWS()<cr>
 
 " Kill the Windows ^M if the encodings are screwy
 map <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Toggle printing whitespace
+nnoremap <leader>l :set list!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscellaneous
