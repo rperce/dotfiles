@@ -175,3 +175,5 @@ map <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " Need this for powerline, if you use that
 let $PYTHONPATH="/usr/lib/python3.4/site-packages"
 
+" Set vimwiki to be a hidden dir
+let g:vimwiki_list = [{'path': '~/.vimwiki'}]
