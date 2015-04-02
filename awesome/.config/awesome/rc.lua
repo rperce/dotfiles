@@ -38,14 +38,17 @@ do
 end
 -- }}}
 
---awful.util.spawn_with_shell("unagi &")
+awful.util.spawn_with_shell("unagi &")
+awful.util.spawn_with_shell("/home/robert/.keyswitch")
+awful.util.spawn_with_shell("pulseaudio --start")
+awful.util.spawn_with_shell("start-pulseaudio-x11")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.getdir("config") .. "/themes/custom/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -131,17 +134,17 @@ end
 
 -- {{{ Wibox
 -- Create a textclock widget
--- mytextclock = awful.widget.textclock()
+mytextclock = awful.widget.textclock()
 mytextclock = wibox.widget.textbox()
 mytextclock:set_text("Now  ")
-clocktimer = timer({ timout = 5 })
+clocktimer = timer({ timeout = 5 })
 clocktimer:connect_signal("timeout",
-    function()
-        text = get_output("/home/robert/path/wordtime")
-        if text ~= nil then
-            mytextclock:set_text(text.."  ")
-        end
-    end
+   function()
+       text = get_output("/home/robert/path/wordtime")
+       if text ~= nil then
+           mytextclock:set_text(text.."  ")
+       end
+   end
 )
 clocktimer:start()
 

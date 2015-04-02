@@ -1,7 +1,6 @@
 #
 # ~/.bashrc
 #
-
 DOT_PATH_FILE='/home/robert/.path'
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -61,3 +60,4 @@ bind 'set mark-symlinked-directories=on'
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/vim'
 
+[ -n "$XTERM_VERSION" ] && transset-df -a > /dev/null
