@@ -13,6 +13,8 @@ local menubar = require("menubar")
 local keydoc = require("keydoc")
 local vicious = require("vicious")
 
+local lain = require("lain")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -48,8 +50,8 @@ beautiful.init(awful.util.getdir("config") .. "/themes/custom/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "x-terminal-emulator"
+editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -64,10 +66,13 @@ local layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
+    lain.layout.centerfair,
+    lain.layout.uselesstile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
+    lain.layout.uselessfair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
@@ -96,7 +101,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
     names = { "main", "irc", "game", "gimp", "code", 6, 7, 8, 9 },
-    layouts = laymap({2, 2, 1, 1, 12, 2, 2, 9, 8})
+    layouts = laymap({4, 4, 4, 4, 4, 4, 4, 4, 4})
 }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -136,13 +141,13 @@ end
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 mytextclock = wibox.widget.textbox()
-mytextclock:set_text("Now  ")
+mytextclock:set_text(" | Now  ")
 clocktimer = timer({ timeout = 5 })
 clocktimer:connect_signal("timeout",
    function()
-       text = get_output("/home/robert/path/wordtime")
+       text = get_output("/home/robertp/bin/wordtime")
        if text ~= nil then
-           mytextclock:set_text(text.."  ")
+           mytextclock:set_text(" | "..text.."  ")
        end
    end
 )
@@ -160,7 +165,7 @@ batterytimer:connect_signal("timeout",
     function()
         text = get_output("/home/robert/path/shortacpi")
         if text ~= nil then
-            batterywidget:set_text(" | " .. text .. " | ")
+            batterywidget:set_text(" | " .. text)
         end
     end
 )
@@ -246,7 +251,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(alsamargin)
-    right_layout:add(batterywidget)
+    -- right_layout:add(batterywidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -258,6 +263,9 @@ for s = 1, screen.count() do
 
     mywibox[s]:set_widget(layout)
 end
+
+-- Conky placeholder
+myconkybox = awful.wibox({ position = "right", screen = 2, ontop = false, width = 210, height = 1 })
 -- }}}
 
 -- {{{ Mouse bindings
@@ -300,7 +308,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-
+    awful.key({ modkey,           }, "F1", function () awful.screen.focus(1) end),
+    awful.key({ modkey,           }, "F2", function () awful.screen.focus(2) end),
 
     -- Standard program
     keydoc.group("Awesome"),
@@ -316,6 +325,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end, "Next layout"),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end, "Previous layout"),
+    awful.key({ modkey,           }, "`",     function () awful.util.spawn_with_shell('lock') end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
@@ -441,6 +451,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
+                     size_hints_honor = false,
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },

@@ -1,0 +1,106 @@
+background yes
+double_buffer yes
+no_buffers yes
+update_interval 1
+total_run_times 0
+
+use_xft yes
+text_buffer_size 1024
+xftfont Sans:size=8
+xftalpha 1
+
+alignment top_right
+gap_x 10
+gap_y 40
+
+double_buffer yes
+minimum_size 200 200
+maximum_width 200
+
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+
+
+TEXT
+${execi 300 curl -s "http://weather.yahooapis.com/forecastrss?w=12792283&u=c" -o /tmp/weather}\
+${font sans-serif:bold:size=8}WEATHER ${hr 2}
+${voffset -5}${font Sans :size=70}${alignr 40}\
+${execi 300 perl -ne'print $1 if /:condition.*temp="(\d+)/' /tmp/weather}\
+${voffset -37}${font Sans :size=30}°
+${voffset -75}${font Sans :size=10}${alignr 10}\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*low="(\d+)"/' /tmp/weather | cut -f1}°/\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*high="(\d+)"/' /tmp/weather | cut -f1}°
+${font Sans :size=8}${alignr 10}Today
+
+${font Sans :size=10}${alignr 10}\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*low="(\d+)"/' /tmp/weather | cut -f2}°/\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*high="(\d+)"/' /tmp/weather | cut -f2}°
+${font Sans :size=8}${alignr 10}Tomorrow
+
+${voffset -5}${font Sans :size=16}\
+${execi 300 perl -ne'print "$1" if /:condition.*text="([\w ]+)"/' /tmp/weather}\
+${voffset -3}${font Sans :size=10}${alignr 10}\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*low="(\d+)"/' /tmp/weather | cut -f3}°/\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*high="(\d+)"/' /tmp/weather | cut -f3}°
+${font Sans :size=8}${alignr 10}${execi 3600 LANG=en_US date -d +2day +%A}
+
+${font Sans :size=9}Humidity:  \
+${execi 300 perl -ne'print "$1" if /:atmosphere.*humidity="(\d+)"/' /tmp/weather}%\
+${font Sans :size=10}${alignr 10}\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*low="(\d+)"/' /tmp/weather | cut -f4}°/\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*high="(\d+)"/' /tmp/weather | cut -f4}°
+${font Sans :size=9}Wind:  \
+${execi 300 perl -ne'print "$1" if /:wind.*speed="([.\d]+)"/' /tmp/weather}\
+${execi 300 perl -ne'print "$1" if /:units.*speed="(.+?)"/' /tmp/weather}\
+${font Sans :size=8}${alignr 10}${execi 3600 LANG=en_US date -d +3day +%A}
+
+${voffset -11}${font Sans :size=9}Pressure:  \
+${execi 300 perl -ne'print "$1" if /:atmosphere.*pressure="([.\d]+)"/' /tmp/weather}\
+${execi 300 perl -ne'print "$1" if /:units.*pressure="(.+?)"/' /tmp/weather}\
+${voffset +11}${font Sans :size=10}${alignr 10}\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*low="(\d+)"/' /tmp/weather | cut -f5}°/\
+${execi 300 perl -ne'print "$1\t" if /:forecast.*high="(\d+)"/' /tmp/weather | cut -f5}°
+${voffset -11}${font Sans :size=9}Visibility:  \
+${execi 300 perl -ne'print "$1" if /:atmosphere.*visibility="([.\d]+)"/' /tmp/weather}\
+${execi 300 perl -ne'print "$1" if /:units.*distance="(.+?)"/' /tmp/weather}\
+${voffset +11}${font Sans :size=8}${alignr 10}${execi 3600 LANG=en_US date -d +4day +%A}
+${voffset -8}${font Sans :size=9}Sun:  \
+${execi 300 date -d"`perl -ne'print \"$1\" if /:astronomy.*sunrise=\"(.+?)\"/' /tmp/weather`" +"%H%M"} - \
+${execi 300 date -d"`perl -ne'print \"$1\" if /:astronomy.*sunset=\"(.+?)\"/' /tmp/weather`" +"%H%M"}
+
+${font sans-serif:bold:size=8}SYSTEM ${hr 2}
+${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+File System: $alignr${fs_type}
+
+${font sans-serif:bold:size=8}PROCESSORS ${hr 2}
+${font sans-serif:normal:size=8}${cpugraph cpu1}
+CPU1: ${cpu cpu1}% ${cpubar cpu1}
+
+${font sans-serif:bold:size=8}MEMORY ${hr 2}
+${font sans-serif:normal:size=8}RAM $alignc $mem / $memmax $alignr $memperc%
+$membar
+
+${font sans-serif:bold:size=8}DISKS ${hr 2}
+${font sans-serif:normal:size=8}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
+${fs_bar /}
+SWAP $alignc ${swap} / ${swapmax} $alignr ${swapperc}%
+${swapbar}
+
+${font sans-serif:bold:size=8}TOP PROCESSES ${hr 2}
+${font sans-serif:normal:size=8}${execp \
+ps aux --no-headers | sed 's/\s\+/ /g' | sort -u -t ' ' -k 11,11 | awk '{printf "%.20s \
+%.2f %%\n", $11, $4}' | sort -t ' ' -k 2,2 -r | head -n 5 | sed 's/ / ${alignr} /g'}
+
+${font sans-serif:bold:size=8}AGENDA ${hr 2}
+${font sans-serif:normal:size=8}${execpi 300 /home/robertp/bin/catcal}
