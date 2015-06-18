@@ -60,4 +60,6 @@ bind 'set mark-symlinked-directories=on'
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/vim'
 
+# git branch tab completion
+test -f ~/.git-completion.bash && . $_
 [ -n "$XTERM_VERSION" ] && transset-df -a > /dev/null
