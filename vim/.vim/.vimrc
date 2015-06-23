@@ -114,7 +114,7 @@ command Wa wa
 command WA wa
 
 " Who wants to move their pinkies?
-map ; :
+" map ; : " uncomment if you don't use f
 inoremap jk <Esc>
 
 " Map 0 to go to the first non-blank character
@@ -174,8 +174,26 @@ nnoremap <leader>l :set list!<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscellaneous
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Need this for powerline, if you use that
-let $PYTHONPATH="/usr/lib/python3.4/site-packages"
+let g:lightline = {
+    \ 'component_expand': {
+    \   'syntastic': 'SyntasticStatuslineFlag',
+    \ },
+    \ 'component_type': {
+    \   'syntastic': 'error',
+    \ },
+    \ 'separator': {'left': '▓▓▒', 'right': '▒▓▓'},
+    \ 'subseparator': {'left': '⡇⡷', 'right': '⢾⢸'}
+    \ }
+
 
 " Set vimwiki to be a hidden dir
 let g:vimwiki_list = [{'path': '~/.vimwiki'}]
+
+" Syntastic assorted settings
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl','perlcritic']
+let g:syntastic_perl_perlcritic_post_args = '-p ~/.perlcriticrc -3'
