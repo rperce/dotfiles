@@ -35,6 +35,7 @@ set whichwrap+=<,>,h,l
 syntax on
 
 " AND LINE NUMBERS
+set relativenumber
 set number
 set relativenumber
 
@@ -56,6 +57,9 @@ set cc=90
 " I will probably never not use a dark, 256-color terminal
 set bg=dark
 set t_Co=256
+
+" colorscheme
+colorscheme Tomorrow-Night-Bright
 
 " Gotta get that statusline, yo
 set laststatus=2
