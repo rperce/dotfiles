@@ -36,6 +36,7 @@ syntax on
 
 " AND LINE NUMBERS
 set number
+set relativenumber
 
 " Show current position
 set ruler
