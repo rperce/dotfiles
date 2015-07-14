@@ -58,7 +58,7 @@ set bg=dark
 set t_Co=256
 
 " colorscheme
-colorscheme Tomorrow-Night-Bright
+colorscheme muon
 
 " Gotta get that statusline, yo
 set laststatus=2
@@ -110,12 +110,12 @@ set tw=90
 " Extra commands
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Fumble-finger saving
-command W w
-command Wq wq
-command WQ wq
-command Q q
-command Wa wa
-command WA wa
+command! W w
+command! Wq wq
+command! WQ wq
+command! Q q
+command! Wa wa
+command! WA wa
 
 " Who wants to move their pinkies?
 " map ; : " uncomment if you don't use f
@@ -201,3 +201,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl','perlcritic']
 let g:syntastic_perl_perlcritic_post_args = '-p ~/.perlcriticrc -3'
+
+au Filetype perl map <F6> :!perltidy -q<CR>
+au Filetype perl map <F7> :%!perltidy -q<CR><CR>
