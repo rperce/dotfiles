@@ -111,12 +111,12 @@ set tw=90
 " Extra commands
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Fumble-finger saving
-command W w
-command Wq wq
-command WQ wq
-command Q q
-command Wa wa
-command WA wa
+command! W w
+command! Wq wq
+command! WQ wq
+command! Q q
+command! Wa wa
+command! WA wa
 
 " Who wants to move their pinkies?
 " map ; : " uncomment if you don't use f

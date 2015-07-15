@@ -1,0 +1,258 @@
+2015-07-14 23:14:07		Plugins loaded: alias, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-07-14 23:14:37	=!=	Error with command "/server irc.snoonet.org" (help on command: /help server)
+2015-07-14 23:14:41	=!=	irc: unable to create temporary server "irc.snoonet.org" because the creation of temporary servers with command /connect is currently disabled
+2015-07-14 23:14:41	=!=	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-07-14 23:14:49	=!=	Error with command "/server help add" (help on command: /help server)
+2015-07-14 23:14:53		[irc]  /server  list|listfull [<server>]
+2015-07-14 23:14:53		                add <server> <hostname>[/<port>] [-temp] [-<option>[=<value>]] [-no<option>]
+2015-07-14 23:14:53		                copy|rename <server> <new_name>
+2015-07-14 23:14:53		                reorder <server> [<server>...]
+2015-07-14 23:14:53		                del|keep <server>
+2015-07-14 23:14:53		                deloutq|jump|raw
+2015-07-14 23:14:53		list, add or remove IRC servers
+2015-07-14 23:14:53		    list: list servers (without argument, this list is displayed)
+2015-07-14 23:14:53		listfull: list servers with detailed info for each server
+2015-07-14 23:14:53		     add: create a new server
+2015-07-14 23:14:53		  server: server name, for internal and display use
+2015-07-14 23:14:53		hostname: name or IP address of server, with optional port (default: 6667), many addresses can be separated by a comma
+2015-07-14 23:14:53		    temp: create temporary server (not saved)
+2015-07-14 23:14:53		  option: set option for server (for boolean option, value can be omitted)
+2015-07-14 23:14:53		nooption: set boolean option to 'off' (for example: -nossl)
+2015-07-14 23:14:53		    copy: duplicate a server
+2015-07-14 23:14:53		  rename: rename a server
+2015-07-14 23:14:53		 reorder: reorder list of servers
+2015-07-14 23:14:53		    keep: keep server in config file (for temporary servers only)
+2015-07-14 23:14:53		     del: delete a server
+2015-07-14 23:14:53		 deloutq: delete messages out queue for all servers (all messages WeeChat is currently sending)
+2015-07-14 23:14:53		    jump: jump to server buffer
+2015-07-14 23:14:53		     raw: open buffer with raw IRC data
+2015-07-14 23:14:53		Examples:
+2015-07-14 23:14:53		  /server listfull
+2015-07-14 23:14:53		  /server add freenode chat.freenode.net
+2015-07-14 23:14:53		  /server add freenode chat.freenode.net/6697 -ssl -autoconnect
+2015-07-14 23:14:53		  /server add chatspike irc.chatspike.net/6667,irc.duckspike.net/6667
+2015-07-14 23:14:53		  /server copy freenode freenode-test
+2015-07-14 23:14:53		  /server rename freenode-test freenode2
+2015-07-14 23:14:53		  /server reorder freenode2 freenode
+2015-07-14 23:14:53		  /server del freenode
+2015-07-14 23:14:53		  /server deloutq
+2015-07-14 23:15:01		irc: server Snoonet created
+2015-07-14 23:24:54		Option changed: irc.server.Snoonet.autoconnect = on  (default: (undefined))
+2015-07-14 23:25:03		Option changed: irc.server.Snoonet.nicks = "DukeCeph"  (default: (undefined))
+2015-07-14 23:25:39		Option changed: irc.server.Snoonet.command = "/msg nickserv identify kumquat"  (default: (undefined))
+2015-07-14 23:25:54		Option changed: irc.server.Snoonet.autojoin = "#bodyweightfitness"  (default: (undefined))
+2015-07-14 23:28:07		fifo: removing old fifo pipe "/home/robert/.weechat/weechat_fifo_23338"
+2015-07-14 23:28:07		New key binding (context "mouse"): @bar(buffers):ctrl-wheeldown => hsignal:buffers_mouse
+2015-07-14 23:28:07		New key binding (context "mouse"): @bar(buffers):ctrl-wheelup => hsignal:buffers_mouse
+2015-07-14 23:28:07		New key binding (context "mouse"): @item(buffers):button2* => hsignal:buffers_mouse
+2015-07-14 23:28:07		New key binding (context "mouse"): @item(buffers):button1* => hsignal:buffers_mouse
+2015-07-14 23:28:07		perl scripts loaded: buffers
+2015-07-14 23:28:07		script: 299 scripts for WeeChat 1.2
+2015-07-14 23:28:07		Plugins loaded: alias, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-07-14 23:28:35		perl: scripts unloaded
+2015-07-14 23:28:35		fifo: pipe closed
+2015-07-14 23:29:41		perl scripts loaded: buffers
+2015-07-14 23:29:41		script: 299 scripts for WeeChat 1.2
+2015-07-14 23:29:41		Plugins loaded: alias, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-07-14 23:30:20		script: script "extra/aspell" not found
+2015-07-14 23:30:35		script: script "aspell" not found
+2015-07-14 23:31:11		script: script "aspell" not found
+2015-07-14 23:31:18		Plugins loaded:
+2015-07-14 23:31:18		  exec: Execution of external commands in WeeChat
+2015-07-14 23:31:18		  logger: Log buffers to files
+2015-07-14 23:31:18		  guile: Support of scheme scripts (with Guile)
+2015-07-14 23:31:18		  tcl: Support of tcl scripts
+2015-07-14 23:31:18		  fifo: FIFO pipe for remote control
+2015-07-14 23:31:18		  trigger: Text replacement and command execution on events triggered by WeeChat/plugins
+2015-07-14 23:31:18		  perl: Support of perl scripts
+2015-07-14 23:31:18		  python: Support of python scripts
+2015-07-14 23:31:18		  ruby: Support of ruby scripts
+2015-07-14 23:31:18		  alias: Alias commands
+2015-07-14 23:31:18		  charset: Charset conversions
+2015-07-14 23:31:18		  relay: Relay WeeChat data to remote application (irc/weechat protocols)
+2015-07-14 23:31:18		  lua: Support of lua scripts
+2015-07-14 23:31:18		  irc: IRC (Internet Relay Chat) protocol
+2015-07-14 23:31:18		  xfer: DCC file transfer and direct chat
+2015-07-14 23:31:18		  script: Scripts manager
+2015-07-14 23:31:38	=!=	Error with command "/plugin install aspell" (help on command: /help plugin)
+2015-07-14 23:32:45	=!=	Error with command "/plugin install buffers.pl" (help on command: /help plugin)
+2015-07-14 23:33:07		[core]  /plugin  list|listfull [<name>]
+2015-07-14 23:33:07		                 load <filename> [<arguments>]
+2015-07-14 23:33:07		                 autoload [<arguments>]
+2015-07-14 23:33:07		                 reload [<name>|* [<arguments>]]
+2015-07-14 23:33:07		                 unload [<name>]
+2015-07-14 23:33:07		list/load/unload plugins
+2015-07-14 23:33:07		     list: list loaded plugins
+2015-07-14 23:33:07		 listfull: list loaded plugins (verbose)
+2015-07-14 23:33:07		     load: load a plugin
+2015-07-14 23:33:07		 autoload: autoload plugins in system or user directory
+2015-07-14 23:33:07		   reload: reload a plugin (if no name given, unload all plugins, then autoload plugins)
+2015-07-14 23:33:07		   unload: unload a plugin (if no name given, unload all plugins)
+2015-07-14 23:33:07		 filename: plugin (file) to load
+2015-07-14 23:33:07		     name: a plugin name
+2015-07-14 23:33:07		arguments: arguments given to plugin on load
+2015-07-14 23:33:07		Without argument, this command lists loaded plugins.
+2015-07-14 23:33:21	=!=	Error: unknown command "/pl" (type /help for help)
+2015-07-14 23:33:38		script: script "buffers.pl" is already installed and up-to-date
+2015-07-14 23:33:40		script: script "buffers.pl" is already installed and up-to-date
+2015-07-14 23:33:41		script: script "buffers.pl" is already installed and up-to-date
+2015-07-14 23:33:48		New key binding (context "mouse"): @chat(perl.iset):button1 => hsignal:iset_mouse
+2015-07-14 23:33:48		New key binding (context "mouse"): @chat(perl.iset):button2* => hsignal:iset_mouse
+2015-07-14 23:33:48		New key binding (context "mouse"): @chat(perl.iset):wheeldown => /repeat 5 /iset **down
+2015-07-14 23:33:48		New key binding (context "mouse"): @chat(perl.iset):wheelup => /repeat 5 /iset **up
+2015-07-14 23:34:31		No server
+2015-07-14 23:34:32		[irc]  /server  list|listfull [<server>]
+2015-07-14 23:34:32		                add <server> <hostname>[/<port>] [-temp] [-<option>[=<value>]] [-no<option>]
+2015-07-14 23:34:32		                copy|rename <server> <new_name>
+2015-07-14 23:34:32		                reorder <server> [<server>...]
+2015-07-14 23:34:32		                del|keep <server>
+2015-07-14 23:34:32		                deloutq|jump|raw
+2015-07-14 23:34:32		list, add or remove IRC servers
+2015-07-14 23:34:32		    list: list servers (without argument, this list is displayed)
+2015-07-14 23:34:32		listfull: list servers with detailed info for each server
+2015-07-14 23:34:32		     add: create a new server
+2015-07-14 23:34:32		  server: server name, for internal and display use
+2015-07-14 23:34:32		hostname: name or IP address of server, with optional port (default: 6667), many addresses can be separated by a comma
+2015-07-14 23:34:32		    temp: create temporary server (not saved)
+2015-07-14 23:34:32		  option: set option for server (for boolean option, value can be omitted)
+2015-07-14 23:34:32		nooption: set boolean option to 'off' (for example: -nossl)
+2015-07-14 23:34:32		    copy: duplicate a server
+2015-07-14 23:34:32		  rename: rename a server
+2015-07-14 23:34:32		 reorder: reorder list of servers
+2015-07-14 23:34:32		    keep: keep server in config file (for temporary servers only)
+2015-07-14 23:34:32		     del: delete a server
+2015-07-14 23:34:32		 deloutq: delete messages out queue for all servers (all messages WeeChat is currently sending)
+2015-07-14 23:34:32		    jump: jump to server buffer
+2015-07-14 23:34:32		     raw: open buffer with raw IRC data
+2015-07-14 23:34:32		Examples:
+2015-07-14 23:34:32		  /server listfull
+2015-07-14 23:34:32		  /server add freenode chat.freenode.net
+2015-07-14 23:34:32		  /server add freenode chat.freenode.net/6697 -ssl -autoconnect
+2015-07-14 23:34:32		  /server add chatspike irc.chatspike.net/6667,irc.duckspike.net/6667
+2015-07-14 23:34:32		  /server copy freenode freenode-test
+2015-07-14 23:34:32		  /server rename freenode-test freenode2
+2015-07-14 23:34:32		  /server reorder freenode2 freenode
+2015-07-14 23:34:32		  /server del freenode
+2015-07-14 23:34:32		  /server deloutq
+2015-07-14 23:34:41		irc: server snoonet created
+2015-07-14 23:34:44	=!=	Error: unknown command "/ehlp" (type /help for help)
+2015-07-14 23:34:46		[core]  /save  [<file> [<file>...]]
+2015-07-14 23:34:46		save configuration files to disk
+2015-07-14 23:34:46		file: configuration file to save (without extension ".conf")
+2015-07-14 23:34:46		Without argument, all files (WeeChat and plugins) are saved.
+2015-07-14 23:35:34		Option changed: irc.server.snoonet.autoconnect = on  (default: (undefined))
+2015-07-14 23:35:39		Option changed: irc.server.snoonet.nicks = "= DukeCeph"  (default: (undefined))
+2015-07-14 23:35:45		Option changed: irc.server.snoonet.nicks = "DukeCeph"  (default: (undefined))
+2015-07-14 23:36:06		Option changed: irc.server.snoonet.command = "/msg nickserv identify kumquat"  (default: (undefined))
+2015-07-14 23:36:29		Option changed: irc.server.snoonet.autojoin = "#xkcd"  (default: (undefined))
+2015-07-14 23:36:35		Option changed: irc.server.snoonet.autojoin = "#bodyweightfitness"  (default: (undefined))
+2015-07-14 23:36:59		Options saved to sec.conf
+2015-07-14 23:36:59		Options saved to weechat.conf
+2015-07-14 23:36:59		Options saved to plugins.conf
+2015-07-14 23:36:59		Options saved to charset.conf
+2015-07-14 23:36:59		Options saved to logger.conf
+2015-07-14 23:36:59		Options saved to exec.conf
+2015-07-14 23:36:59		Options saved to trigger.conf
+2015-07-14 23:36:59		Options saved to alias.conf
+2015-07-14 23:36:59		Options saved to xfer.conf
+2015-07-14 23:36:59		Options saved to irc.conf
+2015-07-14 23:36:59		Options saved to relay.conf
+2015-07-14 23:36:59		Options saved to buffers.conf
+2015-07-14 23:36:59		Options saved to script.conf
+2015-07-14 23:36:59		Options saved to iset.conf
+2015-07-14 23:37:14	=!=	irc: server "weechat" not found
+2015-07-14 23:37:17		All servers:
+2015-07-14 23:37:17		 * snoonet [connected], 1 channel, 0 pv
+2015-07-14 23:38:10		Buffers list:
+2015-07-14 23:38:10		  [1] core.weechat (notify: all)
+2015-07-14 23:38:10		  [1] irc.server.snoonet (notify: all)
+2015-07-14 23:38:10		  [2] irc.snoonet.#bodyweightfitness (notify: all)
+2015-07-14 23:38:10		  [3] irc.snoonet.inddwtsn (notify: all)
+2015-07-14 23:39:05		perl: loading script "/home/robert/.weechat/perl/highmon.pl"
+2015-07-14 23:39:05		perl: registered script "highmon", version 2.5 (Highlight Monitor)
+2015-07-14 23:39:05		This appears to be the first time highmon has been run. For help and common set up hints see /highmon help
+2015-07-14 23:39:09		script: script "iset.pl" is already installed and up-to-date
+2015-07-14 23:39:20		Highmon Help
+2015-07-14 23:39:20		/highmon [help] | [monitor [channel [server]]] | [clean default|orphan|all] | clearbar
+2015-07-14 23:39:20		 Command wrapper for highmon commands
+2015-07-14 23:39:20		/highmon clean default|orphan|all will clean the config section of default 'on' entries, channels you are no longer joined, or both
+2015-07-14 23:39:20		/highmon clearbar will clear the contents of highmon's bar output
+2015-07-14 23:39:20		/highmon monitor [channel] [server] is used to toggle a highlight monitoring on and off, this can be used in the channel buffer for the channel you wish to toggle, or be given with arguments e.g. /highmon monitor #weechat freenode
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.alignment
+2015-07-14 23:39:20		 The config setting "alignment" can be changed to;
+2015-07-14 23:39:20		 "channel", "schannel", "nchannel", "channel,nick", "schannel,nick", "nchannel,nick"
+2015-07-14 23:39:20		 to change how the monitor appears
+2015-07-14 23:39:20		 The 'channel'  value will show: "#weechat"
+2015-07-14 23:39:20		 The 'schannel' value will show: "6"
+2015-07-14 23:39:20		 The 'nchannel' value will show: "6:#weechat"
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.short_names
+2015-07-14 23:39:20		 Setting this to 'on' will trim the network name from highmon, ala buffers.pl
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.merge_private
+2015-07-14 23:39:20		 Setting this to 'on' will merge private messages to highmon's display
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.color_buf
+2015-07-14 23:39:20		 This turns colored buffer names on or off, you can also set a single fixed color by using a weechat color name.
+2015-07-14 23:39:20		 This must be a valid color name, or weechat will likely do unexpected things :)
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.hotlist_show
+2015-07-14 23:39:20		Setting this to 'on' will let the highmon buffer appear in hotlists (status bar/buffer.pl)
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.away_only
+2015-07-14 23:39:20		Setting this to 'on' will only put messages in the highmon buffer when you set your status to away
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.logging
+2015-07-14 23:39:20		 Toggles logging status for highmon buffer (default: off)
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.output
+2015-07-14 23:39:20		 Changes where output method of highmon; takes either "bar" or "buffer" (default; buffer)
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.bar_lines
+2015-07-14 23:39:20		 Changes the amount of lines the output bar will hold.
+2015-07-14 23:39:20		 (Only appears once output has been set to bar, defaults to 10)
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.bar_scrolldown
+2015-07-14 23:39:20		 Toggles the bar scrolling at the bottom when new highlights are received
+2015-07-14 23:39:20		 (Only appears once output has been set to bar, defaults to off)
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.nick_prefix
+2015-07-14 23:39:20		/set plugins.var.perl.highmon.nick_suffix
+2015-07-14 23:39:20		 Sets the prefix and suffix chars in the highmon buffer
+2015-07-14 23:39:20		 (Defaults to <> if nothing set, and blank if there is)
+2015-07-14 23:39:20		servername.#channel
+2015-07-14 23:39:20		 servername is the internal name for the server (set when you use /server add)
+2015-07-14 23:39:20		 #channel is the channel name, (where # is whatever channel type that channel happens to be)
+2015-07-14 23:39:20		Optional, set up tweaks; Hide the status and input lines on highmon
+2015-07-14 23:39:20		/set weechat.bar.status.conditions "${window.buffer.full_name} != perl.highmon"
+2015-07-14 23:39:20		/set weechat.bar.input.conditions "${window.buffer.full_name} != perl.highmon"
+2015-07-14 23:39:40		Option changed: plugins.var.perl.highmon.short_names = "on"
+2015-07-14 23:40:59		Option changed: irc.color.nick_prefixes = "red"  (default: "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue")
+2015-07-14 23:41:34		Option changed: plugins.var.perl.highmon.short_names = "off"
+2015-07-14 23:42:16		Option changed: irc.color.nick_prefixes = "red"  (default: "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue")
+2015-07-14 23:43:57		Option changed: irc.look.item_nick_prefix = on
+2015-07-14 23:44:09		Option changed: irc.color.nick_prefixes = "default"  (default: "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue")
+2015-07-14 23:44:30		Option changed: irc.color.nick_prefixes = ""q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue")"  (default: "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue")
+2015-07-14 23:44:34		Option changed: irc.color.nick_prefixes = "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue"
+2015-07-14 23:48:01		Options saved to sec.conf
+2015-07-14 23:48:01		Options saved to weechat.conf
+2015-07-14 23:48:01		Options saved to plugins.conf
+2015-07-14 23:48:01		Options saved to charset.conf
+2015-07-14 23:48:01		Options saved to logger.conf
+2015-07-14 23:48:01		Options saved to exec.conf
+2015-07-14 23:48:01		Options saved to trigger.conf
+2015-07-14 23:48:01		Options saved to alias.conf
+2015-07-14 23:48:01		Options saved to xfer.conf
+2015-07-14 23:48:01		Options saved to irc.conf
+2015-07-14 23:48:01		Options saved to relay.conf
+2015-07-14 23:48:01		Options saved to buffers.conf
+2015-07-14 23:48:01		Options saved to script.conf
+2015-07-14 23:48:01		Options saved to iset.conf
+2015-07-14 23:59:41	=!=	Too few arguments for command "/query" (help on command: /help query)
+2015-07-15 00:00:32		Options saved to sec.conf
+2015-07-15 00:00:32		Options saved to weechat.conf
+2015-07-15 00:00:32		Options saved to plugins.conf
+2015-07-15 00:00:32		Options saved to charset.conf
+2015-07-15 00:00:32		Options saved to logger.conf
+2015-07-15 00:00:32		Options saved to exec.conf
+2015-07-15 00:00:32		Options saved to trigger.conf
+2015-07-15 00:00:32		Options saved to alias.conf
+2015-07-15 00:00:32		Options saved to xfer.conf
+2015-07-15 00:00:32		Options saved to irc.conf
+2015-07-15 00:00:32		Options saved to relay.conf
+2015-07-15 00:00:32		Options saved to buffers.conf
+2015-07-15 00:00:32		Options saved to script.conf
+2015-07-15 00:00:32		Options saved to iset.conf
+2015-07-15 00:00:36		Highmon buffer has been closed but output is still set to buffer, unusual results may occur. To recreate the buffer use /highmon fix
+2015-07-15 00:00:36		perl: scripts unloaded
+2015-07-15 00:00:36		fifo: pipe closed

@@ -7,3 +7,12 @@
 [submodule "vim/.vim/bundle/vimwiki"]
 	path = vim/.vim/bundle/vimwiki
 	url = git://github.com/vim-scripts/vimwiki.git
+[submodule "tmux/.config/tmux/tmux-resurrect"]
+	path = tmux/.config/tmux/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "vim/.vim/bundle/vim-coffee-script"]
+	path = vim/.vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/.vim/bundle/latex-unicoder.vim"]
+	path = vim/.vim/bundle/latex-unicoder.vim
+	url = https://github.com/joom/latex-unicoder.vim
