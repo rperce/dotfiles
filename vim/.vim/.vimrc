@@ -37,7 +37,6 @@ syntax on
 " AND LINE NUMBERS
 set relativenumber
 set number
-set relativenumber
 
 " Show current position
 set ruler
@@ -59,7 +58,7 @@ set bg=dark
 set t_Co=256
 
 " colorscheme
-colorscheme Tomorrow-Night-Bright
+colorscheme muon
 
 " Gotta get that statusline, yo
 set laststatus=2
@@ -202,3 +201,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl','perlcritic']
 let g:syntastic_perl_perlcritic_post_args = '-p ~/.perlcriticrc -3'
+
+au Filetype perl map <F6> :!perltidy -q<CR>
+au Filetype perl map <F7> :%!perltidy -q<CR><CR>
