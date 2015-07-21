@@ -16,3 +16,6 @@
 [submodule "vim/.vim/bundle/latex-unicoder.vim"]
 	path = vim/.vim/bundle/latex-unicoder.vim
 	url = https://github.com/joom/latex-unicoder.vim
+[submodule "vim/.vim/bundle/vim-css-color"]
+	path = vim/.vim/bundle/vim-css-color
+	url = https://github.com/ap/vim-css-color

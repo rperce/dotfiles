@@ -3,3 +3,4 @@
 .config/menus/*
 .config/pcmanfm/*
 .config/pulse/*
+weechat/.weechat/logs/*
