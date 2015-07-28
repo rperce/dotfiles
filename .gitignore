@@ -1,5 +1,2 @@
-.config/chromium/*
-.config/libfm/*
-.config/menus/*
-.config/pcmanfm/*
-.config/pulse/*
+weechat/.weechat/logs/*
+weechat/.weechat/weechat.log
