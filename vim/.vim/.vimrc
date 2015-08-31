@@ -202,5 +202,7 @@ let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl','perlcritic']
 let g:syntastic_perl_perlcritic_post_args = '-p ~/.perlcriticrc -3'
 
+let g:syntastic_tex_checkers = ['chktex']
+
 au Filetype perl map <F6> :!perltidy -q<CR>
 au Filetype perl map <F7> :%!perltidy -q<CR><CR>

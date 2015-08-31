@@ -19,3 +19,6 @@
 [submodule "vim/.vim/bundle/vim-css-color"]
 	path = vim/.vim/bundle/vim-css-color
 	url = https://github.com/ap/vim-css-color
+[submodule "vim/.vim/bundle/L-syntax"]
+	path = vim/.vim/bundle/L-syntax
+	url = git@github.com:rperce/L-syntax
