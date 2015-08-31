@@ -22,3 +22,6 @@
 [submodule "vim/.vim/bundle/L-syntax"]
 	path = vim/.vim/bundle/L-syntax
 	url = git@github.com:rperce/L-syntax
+[submodule "vim/.vim/bundle/vim-align"]
+	path = vim/.vim/bundle/vim-align
+	url = https://github.com/cespare/vim-align

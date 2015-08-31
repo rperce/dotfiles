@@ -1,1 +1,5 @@
 weechat/.weechat/logs/*
+<<<<<<< HEAD
+=======
+weechat/.weechat/weechat.log
+>>>>>>> 332c4871b181a2a21b7972a0870ae6c0bec3103c
