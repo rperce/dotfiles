@@ -17,7 +17,7 @@ def keynamelookup(key):
               'colon':':',
               'dead_tilde':'~',
               'dead_acute':'´',
-              'apostrophe':"\''",
+              'apostrophe':'\'',
               'dead_grave':'`',
               'dead_circumflex':'^',
               'quotedbl':'"',

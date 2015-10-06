@@ -145,7 +145,7 @@ mytextclock:set_text(" | Now  ")
 clocktimer = timer({ timeout = 5 })
 clocktimer:connect_signal("timeout",
    function()
-       text = get_output("/home/robertp/bin/wordtime")
+       text = get_output("/home/robert/path/wordtime")
        if text ~= nil then
            mytextclock:set_text(" | "..text.."  ")
        end
@@ -159,7 +159,7 @@ alsamargin = wibox.layout.margin(alsawidget.bar,0,0,4,4)
 
 -- battery widget
 batterywidget = wibox.widget.textbox()
-batterywidget:set_text(" | Battery | ")
+batterywidget:set_text(" | Battery")
 batterytimer = timer({ timeout = 5 })
 batterytimer:connect_signal("timeout",
     function()
@@ -251,7 +251,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(alsamargin)
-    -- right_layout:add(batterywidget)
+    right_layout:add(batterywidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -265,7 +265,7 @@ for s = 1, screen.count() do
 end
 
 -- Conky placeholder
-myconkybox = awful.wibox({ position = "right", screen = 2, ontop = false, width = 210, height = 1 })
+-- myconkybox = awful.wibox({ position = "right", screen = 2, ontop = false, width = 210, height = 1 })
 -- }}}
 
 -- {{{ Mouse bindings
