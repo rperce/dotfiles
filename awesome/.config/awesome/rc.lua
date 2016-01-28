@@ -49,7 +49,7 @@ awful.util.spawn_with_shell("compton -b")
 awful.util.spawn_with_shell("echo -e \"++++\nPATH: $PATH\n++++\"")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.getdir("config") .. "/themes/custom/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/flat/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 --
 -- silly chromebook audio
@@ -153,12 +153,19 @@ end
 mytextclock = awful.widget.textclock()
 mytextclock = wibox.widget.textbox()
 mytextclock:set_text(" | Now  ")
+textclock_t = awful.tooltip({ objects = {mytextclock},})
+textclock_t:set_text("Date")
 clocktimer = timer({ timeout = 10 })
 clocktimer:connect_signal("timeout",
    function()
-       text = get_output("/home/robert/path/wordtime")
+       text = get_output('/home/robert/path/wordtime -t')
        if text ~= nil then
-           mytextclock:set_text(" | "..text.."  ")
+           mytextclock:set_text(' | ' .. text .. '  ')
+       end
+
+       longtext = get_output('/home/robert/path/wordtime')
+       if longtext ~= nil then
+           textclock_t:set_text('  ' .. longtext .. '  ')
        end
    end
 )
@@ -254,7 +261,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
+    --left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
 
