@@ -1,7 +1,7 @@
 #
 # ~/.bashrc
 #
-DOT_PATH_FILE='/home/robert/.path'
+DOT_PATH_FILE='/home/robert/path/setpath'
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -41,9 +41,12 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-# include each line of .path to path
-if [ -f "$DOT_PATH_FILE" ]; then
-	export PATH=$PATH:`awk '/^[^#]/{printf "%s",(++x!=1?":":"")$0}' $DOT_PATH_FILE`
+if [ -f $DOT_PATH_FILE ]; then
+    . $DOT_PATH_FILE
+fi
+# shh, termite. The world is not ready for you.
+if [ "$TERM" = "xterm-termite" ]; then
+    export TERM='xterm'
 fi
 
 # set colors if in a framebuffer terminal to those of .Xresources
