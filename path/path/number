@@ -1,0 +1,45 @@
+#!/usr/bin/ruby
+@small =  ['zero',  'one',   'two',   'three', 'four',   'five', 'six'] \
+       +  ['seven', 'eight', 'nine',  'ten',   'eleven', 'twelve'] \
+       +  ['thir', 'four', 'fif', 'six', 'seven', 'eigh', 'nine'].map{ |s| s + 'teen' }
+@tens  =  ['','', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+@scale =  ['', 'thousand', 'million', 'billion', 'trillion']
+
+def tens(n)
+    if n < 20
+        return @small[n]
+    end
+    q, r = n.divmod(10)
+    out = @tens[q]
+    out += "-#{@small[r]}" if r > 0
+    return out
+end
+
+def hundreds(n)
+    q, r = n.divmod(100)
+    out = ''
+    if q > 0
+        out = "#{@small[q]} hundred"
+        out += ' and ' if r > 0
+    end
+    out += tens(r) if r > 0
+    return out
+end
+
+def thous(n, depth)
+    q, r = n.divmod(1000)
+    out = ''
+    if q > 0
+        out = thous(q, depth + 1)
+        out += ', ' if r > 0
+    end
+    out += "#{hundreds(r)} #{@scale[depth]}" if r > 0
+    return out
+end
+
+n = ARGV[0].to_i
+if n == 0
+    puts 'zero'
+else
+    puts thous(n, 0)
+end

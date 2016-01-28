@@ -1,0 +1,14 @@
+#!/bin/bash
+add=(
+    /home/robert/path
+    /home/robert/path/dispatch-chrony
+    /media/SD_CARD/texlive/bin/i386-linux
+    /home/robert/.gem/ruby/2.3.0/bin
+)
+
+function arrayjoin { local IFS="$1"; shift; echo "$*"; }
+if [ -z "$OLDPATH" ]; then
+    export OLDPATH=$PATH
+fi
+
+export PATH="$OLDPATH:"`arrayjoin ":" "${add[@]}"`

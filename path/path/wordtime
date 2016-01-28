@@ -1,0 +1,44 @@
+#!/usr/bin/ruby
+def number(n)
+    return `~/path/number #{n}`.strip
+end
+def succ(h)
+    return h % 12 + 1
+end
+
+def ordinal(n)
+    return ['first', 'second', 'third'][n-1] if n<4
+    return 'fifth'   if n == 5
+    return 'twelfth' if n == 12
+    nn = number(n)
+    if n < 20 then
+        nn = nn[0...-1] if ['e','t'].include?(nn[-1])
+        return nn+'th'
+    end
+    q, r = n.divmod(10)
+    return "#{nn[0...-1]}ieth" if r == 0
+    return "#{number(q*10)}-#{ordinal(r)}"
+end
+def time(time)
+    h, m = time.split(':').map { |t| t.to_i }
+    return "#{number(h)} o'clock"            if m == 0
+    return "quarter past #{number(h)}"       if m == 15
+    return "half past #{number(h)}"          if m == 30
+    return "quarter till #{number(succ(h))}" if m == 45
+    if m<30 then
+        return "#{number(m)} past #{number(h)}"
+    else
+        return "#{number(60-m)} till #{number(succ(h))}"
+    end
+end
+
+out = ''
+[   ['%A %B',   lambda { |w| w.downcase } ],
+    ['%d',      lambda { |w| ' '  + ordinal(w.to_i) } ],
+    ['%I:%M',   lambda { |w| ', ' + time(w) } ]
+].each do |format, method|
+    word = `date "+#{format}"`.strip
+    out += method.call(word)
+end
+
+puts out #this program is such a slut
