@@ -40,17 +40,28 @@ do
 end
 -- }}}
 
-awful.util.spawn_with_shell("unagi &")
-awful.util.spawn_with_shell("/home/robert/.keyswitch")
-awful.util.spawn_with_shell("pulseaudio --start")
-awful.util.spawn_with_shell("start-pulseaudio-x11")
+awful.util.spawn_with_shell("/home/robert/path/setpath")
+awful.util.spawn_with_shell("setxkbmap -option compose:ralt")
+
+awful.util.spawn_with_shell("compton -b")
+--awful.util.spawn_with_shell("pulseaudio --start")
+--awful.util.spawn_with_shell("start-pulseaudio-x11")
+awful.util.spawn_with_shell("echo -e \"++++\nPATH: $PATH\n++++\"")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.getdir("config") .. "/themes/custom/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+--
+-- silly chromebook audio
+awful.util.spawn_with_shell('amixer -c 0 set "Left Headphone Mixer Left DAC" unmute')
+awful.util.spawn_with_shell('amixer -c 0 set "Right Headphone Mixer Right DAC" unmute')
+awful.util.spawn_with_shell('amixer -c 0 set "Left Speaker Mixer Left DAC" unmute')
+awful.util.spawn_with_shell('amixer -c 0 set "Left Speaker Mixer Right DAC" unmute')
+awful.util.spawn_with_shell('amixer -c 0 set "Right Speaker Mixer Left DAC" unmute')
+awful.util.spawn_with_shell('amixer -c 0 set "Right Speaker Mixer Right DAC" unmute')
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "termite"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -142,7 +153,7 @@ end
 mytextclock = awful.widget.textclock()
 mytextclock = wibox.widget.textbox()
 mytextclock:set_text(" | Now  ")
-clocktimer = timer({ timeout = 5 })
+clocktimer = timer({ timeout = 10 })
 clocktimer:connect_signal("timeout",
    function()
        text = get_output("/home/robert/path/wordtime")
