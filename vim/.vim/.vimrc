@@ -190,8 +190,8 @@ let g:lightline = {
     \ }
 
 
-" Set vimwiki to be a hidden dir
-let g:vimwiki_list = [{'path': '~/.vimwiki'}]
+" Set vimwiki to be its own dir
+let g:vimwiki_list = [{'path': '~/vimwiki'}]
 
 " Syntastic assorted settings
 let g:syntastic_always_populate_loc_list = 1
@@ -201,6 +201,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl','perlcritic']
 let g:syntastic_perl_perlcritic_post_args = '-p ~/.perlcriticrc -3'
+let g:syntastic_java_javac_config_file_enabled = 1
 
 let g:syntastic_tex_checkers = ['chktex']
 
