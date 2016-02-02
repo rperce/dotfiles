@@ -111,8 +111,8 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names = { "main", "irc", "game", "gimp", "code", 6, 7, 8, 9 },
-    layouts = laymap({4, 4, 4, 4, 4, 4, 4, 4, 4})
+    names =          { "main", "chat", "code", "gimp", "game", 6, 7, 8, 9 },
+    layouts = laymap({ 4,      4,     4,      4,      4,      4, 4, 4, 4 })
 }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -173,7 +173,7 @@ clocktimer:start()
 
 -- alsa widget
 alsawidget = require('alsawidget')
-alsamargin = wibox.layout.margin(alsawidget.bar,0,0,4,4)
+alsamargin = wibox.layout.margin(alsawidget.bar,5,0,4,4)
 
 -- battery widget
 batterywidget = wibox.widget.textbox()
@@ -383,15 +383,15 @@ clientkeys = awful.util.table.join(
         end, "Toggle maximized")
 )
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume", function()
-    awful.util.spawn("amixer sset " .. alsawidget.channel .. " " .. alsawidget.step .. "+")
+    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
     vicious.force({ alsawidget.bar })
 end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume", function()
-    awful.util.spawn("amixer sset " .. alsawidget.channel .. " " .. alsawidget.step .. "-")
+    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. "-"))
     vicious.force({ alsawidget.bar })
 end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute", function()
-    awful.util.spawn("amixer sset " .. alsawidget.channel .. " toggle")
+    awful.util.spawn(alsawidget.amixer_cmd('sset', ' toggle'))
     -- The 2 following lines were needed at least on my configuration, otherwise it would get stuck muted
     --awful.util.spawn("amixer sset " .. "Speaker" .. " unmute")
     --awful.util.spawn("amixer sset " .. "Headphone" .. " unmute")
