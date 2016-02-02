@@ -2,6 +2,7 @@ local awful     = require("awful")
 local naughty   = require("naughty")
 local vicious   = require("vicious")
 local alsawidget = {
+    amixer = "amixer -c 0",
     channel = "Master",
     step = "5%",
     colors = {
@@ -14,7 +15,10 @@ local alsawidget = {
 		font = "Monospace 11", -- must be a monospace font for the bar to be sized consistently
 		icon_size = 48,
 		bar_size = 20 -- adjust to fit your font if the bar doesn't fit
-	}
+	},
+    amixer_cmd = function(op, cmd)
+        return alsawidget.amixer .. ' ' .. op .. ' ' .. alsawidget.channel .. ' ' .. cmd
+    end
 }
 -- widget
 alsawidget.bar = awful.widget.progressbar ()
@@ -28,15 +32,15 @@ alsawidget.bar:buttons (awful.util.table.join (
 		awful.util.spawn (alsawidget.mixer)
 	end),
 	awful.button ({}, 3, function()
-		awful.util.spawn ("amixer sset " .. alsawidget.channel .. " toggle")
+		awful.util.spawn (alsawidget.amixer_cmd('sset', 'toggle'))
 		vicious.force ({ alsawidget.bar })
 	end),
 	awful.button ({}, 4, function()
-		awful.util.spawn ("amixer sset " .. alsawidget.channel .. " " .. alsawidget.step .. "+")
+		awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
 		vicious.force ({ alsawidget.bar })
 	end),
 	awful.button ({}, 5, function()
-		awful.util.spawn ("amixer sset " .. alsawidget.channel .. " " .. alsawidget.step .. "-")
+		awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '-'))
 		vicious.force ({ alsawidget.bar })
 	end)
 ))
