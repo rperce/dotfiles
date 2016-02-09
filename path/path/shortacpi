@@ -1,1 +1,12 @@
-acpi | sed 's/Battery .: .*harging, //' | sed 's/until charged/\/\\/' | sed 's/remaining/\\\//'
+#!/bin/sh
+#acpi | sed 's/Battery .: .*harging, //' | sed 's/until charged/\/\\/' |
+#sed 's/remaining/\\\//' | sed 's/:[0-9][0-9] /m /' | sed 's/:/h /' |
+#sed 's/ 0/ /' | sed 's/h  Full, //'
+
+acpi | sed -e 's/Battery .: .*harging, //'  \
+           -e 's/until charged/\/\\/'       \
+           -e 's/remaining/\\\//'           \
+           -e 's/:[0-9][0-9] /m /'          \
+           -e 's/:/h /'                     \
+           -e 's/ 0/ /'                     \
+           -e 's/h  Full, //'
