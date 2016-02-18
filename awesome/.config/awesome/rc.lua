@@ -44,6 +44,7 @@ awful.util.spawn_with_shell("/home/robert/path/setpath")
 awful.util.spawn_with_shell("setxkbmap -option compose:ralt")
 
 awful.util.spawn_with_shell("compton -b")
+awful.util.spawn_with_shell("unclutter")
 --awful.util.spawn_with_shell("pulseaudio --start")
 --awful.util.spawn_with_shell("start-pulseaudio-x11")
 awful.util.spawn_with_shell("echo -e \"++++\nPATH: $PATH\n++++\"")
@@ -61,7 +62,7 @@ awful.util.spawn_with_shell('amixer -c 0 set "Right Speaker Mixer Left DAC" unmu
 awful.util.spawn_with_shell('amixer -c 0 set "Right Speaker Mixer Right DAC" unmute')
 
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "termite -e tmux"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -141,54 +142,21 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
-function get_output(cmd)
-    fh = assert(io.popen(cmd, "r"))
-    text = fh:read("*l*")
-    fh:close()
-    return text
-end
-
 -- {{{ Wibox
--- Create a textclock widget
-mytextclock = awful.widget.textclock()
-mytextclock = wibox.widget.textbox()
-mytextclock:set_text(" | Now  ")
-textclock_t = awful.tooltip({ objects = {mytextclock},})
-textclock_t:set_text("Date")
-clocktimer = timer({ timeout = 10 })
-clocktimer:connect_signal("timeout",
-   function()
-       text = get_output('/home/robert/path/wordtime -t')
-       if text ~= nil then
-           mytextclock:set_text(' | ' .. text .. '  ')
-       end
+widgets = {
+    alsa        = require('widgets/alsa'),
+    pomodoro    = require('widgets/pomodoro'),
 
-       longtext = get_output('/home/robert/path/wordtime')
-       if longtext ~= nil then
-           textclock_t:set_text('  ' .. longtext .. '  ')
-       end
-   end
-)
-clocktimer:start()
+    battery     = require('widgets/battery'),
 
--- alsa widget
-alsawidget = require('alsawidget')
-alsamargin = wibox.layout.margin(alsawidget.bar,5,0,4,4)
+    clock       = wibox.layout.margin(require('widgets/clock'), 0, 5, 0, 0),
+    separator   = wibox.widget.textbox(),
+}
+widgets.alsa_margin = wibox.layout.margin(widgets.alsa.bar,5,0,4,4),
 
--- battery widget
-batterywidget = wibox.widget.textbox()
-batterywidget:set_text(" | Battery")
-batterytimer = timer({ timeout = 5 })
-batterytimer:connect_signal("timeout",
-    function()
-        text = get_output("/home/robert/path/shortacpi")
-        if text ~= nil then
-            batterywidget:set_text(" | " .. text)
-        end
-    end
-)
-batterytimer:start()
-
+--widgets.separator:set_text('⢾⡇')
+widgets.separator:set_text('║')
+widgets.separator = wibox.layout.margin(widgets.separator, 5, 5, 0, 0)
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -242,14 +210,7 @@ mytasklist.buttons = awful.util.table.join(
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    mylayoutbox[s] = awful.widget.layoutbox(s)
-    mylayoutbox[s]:buttons(awful.util.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-                           awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
@@ -268,10 +229,14 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(alsamargin)
-    right_layout:add(batterywidget)
-    right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
+    right_layout:add(widgets.alsa_margin)
+    --right_layout:add(widgets.wifi)
+    right_layout:add(widgets.separator)
+    right_layout:add(widgets.pomodoro)
+    right_layout:add(widgets.separator)
+    right_layout:add(widgets.battery)
+    right_layout:add(widgets.separator)
+    right_layout:add(widgets.clock)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -382,20 +347,20 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end, "Toggle maximized")
 )
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume", function()
-    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
-    vicious.force({ alsawidget.bar })
+--globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume", function()
+--globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume", function()
+--globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute", function()
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F10", widgets.alsa.fn_vol_up))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F9", widgets.alsa.fn_vol_down))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F8", widgets.alsa.fn_toggle_mute))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F7", function()
+    awful.util.spawn('xbacklight -inc 5')
 end))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume", function()
-    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. "-"))
-    vicious.force({ alsawidget.bar })
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F6", function()
+    awful.util.spawn('xbacklight -dec 5')
 end))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute", function()
-    awful.util.spawn(alsawidget.amixer_cmd('sset', ' toggle'))
-    -- The 2 following lines were needed at least on my configuration, otherwise it would get stuck muted
-    --awful.util.spawn("amixer sset " .. "Speaker" .. " unmute")
-    --awful.util.spawn("amixer sset " .. "Headphone" .. " unmute")
-    vicious.force({ alsawidget.bar })
+globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, }, "BackSpace", function()
+    awful.util.spawn('/home/robert/path/lock')
 end))
 
 

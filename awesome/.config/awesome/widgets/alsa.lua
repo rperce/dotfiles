@@ -2,7 +2,7 @@ local awful     = require("awful")
 local naughty   = require("naughty")
 local vicious   = require("vicious")
 local alsawidget = {
-    amixer = "amixer -c 0",
+    amixer = "amixer",
     channel = "Master",
     step = "5%",
     colors = {
@@ -16,10 +16,29 @@ local alsawidget = {
 		icon_size = 48,
 		bar_size = 20 -- adjust to fit your font if the bar doesn't fit
 	},
-    amixer_cmd = function(op, cmd)
-        return alsawidget.amixer .. ' ' .. op .. ' ' .. alsawidget.channel .. ' ' .. cmd
-    end
 }
+alsawidget.amixer_cmd = function(op, cmd)
+    return alsawidget.amixer .. ' ' .. op .. ' ' .. alsawidget.channel .. ' ' .. cmd
+end
+alsawidget.fn_spawn_mixer = function()
+    awful.util.spawn(alsawidget.mixer)
+end
+alsawidget.fn_toggle_mute = function()
+    print(alsawidget.amixer_cmd('sset', 'toggle'))
+    awful.util.spawn(alsawidget.amixer_cmd('sset', 'toggle'))
+    vicious.force ({ alsawidget.bar })
+end
+alsawidget.fn_vol_up = function()
+    print(alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
+    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
+    vicious.force ({ alsawidget.bar })
+end
+alsawidget.fn_vol_down = function()
+    print(alsawidget.amixer_cmd('sset', alsawidget.step .. '-'))
+    awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '-'))
+    vicious.force ({ alsawidget.bar })
+end
+
 -- widget
 alsawidget.bar = awful.widget.progressbar ()
 alsawidget.bar:set_width (10)
@@ -28,22 +47,12 @@ alsawidget.bar:set_vertical (true)
 alsawidget.bar:set_background_color ("#494B4F")
 alsawidget.bar:set_color (alsawidget.colors.unmute)
 alsawidget.bar:buttons (awful.util.table.join (
-	awful.button ({}, 1, function()
-		awful.util.spawn (alsawidget.mixer)
-	end),
-	awful.button ({}, 3, function()
-		awful.util.spawn (alsawidget.amixer_cmd('sset', 'toggle'))
-		vicious.force ({ alsawidget.bar })
-	end),
-	awful.button ({}, 4, function()
-		awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
-		vicious.force ({ alsawidget.bar })
-	end),
-	awful.button ({}, 5, function()
-		awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '-'))
-		vicious.force ({ alsawidget.bar })
-	end)
+	awful.button ({}, 1, alsawidget.fn_spawn_mixer),
+	awful.button ({}, 3, alsawidget.fn_toggle_mute),
+	awful.button ({}, 4, alsawidget.fn_vol_up),
+	awful.button ({}, 5, alsawidget.fn_vol_down)
 ))
+
 -- tooltip
 alsawidget.tooltip = awful.tooltip ({ objects = { alsawidget.bar } })
 -- naughty notifications
