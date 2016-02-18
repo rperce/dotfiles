@@ -197,6 +197,9 @@ let g:vimwiki_list = [{'path': '~/vimwiki'}]
 " ctrlp is a silly binding because ctrl is hard to hit
 let g:ctrlp_map = '<leader>f'
 
+" NERDtree plz
+noremap <leader>n :NERDTreeToggle<CR>
+
 " Syntastic assorted settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1

@@ -28,3 +28,9 @@
 [submodule "vim/.vim/bundle/TeX-PDF"]
 	path = vim/.vim/bundle/TeX-PDF
 	url = git@github.com:vim-scripts/TeX-PDF
+[submodule "vim/.vim/bundle/ctrlp.vim"]
+	path = vim/.vim/bundle/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim
+[submodule "vim/.vim/bundle/nerdtree"]
+	path = vim/.vim/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree
