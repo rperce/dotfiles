@@ -194,6 +194,9 @@ let g:lightline = {
 " Set vimwiki to be its own dir
 let g:vimwiki_list = [{'path': '~/vimwiki'}]
 
+" ctrlp is a silly binding because ctrl is hard to hit
+let g:ctrlp_map = '<leader>f'
+
 " Syntastic assorted settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -206,7 +209,6 @@ let g:syntastic_java_javac_config_file_enabled = 1
 
 let g:syntastic_tex_checkers = ['chktex']
 
-let g:tex_pdf_map_keys = 0
 
 au Filetype perl map <F6> :!perltidy -q<CR>
 au Filetype perl map <F7> :%!perltidy -q<CR><CR>
