@@ -172,6 +172,7 @@ map <leader>kw :call DeleteTrailingWS()<cr>
 " Kill the Windows ^M if the encodings are screwy
 map <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+
 " Toggle printing whitespace
 nnoremap <leader>l :set list!<CR>
 
@@ -204,6 +205,8 @@ let g:syntastic_perl_perlcritic_post_args = '-p ~/.perlcriticrc -3'
 let g:syntastic_java_javac_config_file_enabled = 1
 
 let g:syntastic_tex_checkers = ['chktex']
+
+let g:tex_pdf_map_keys = 0
 
 au Filetype perl map <F6> :!perltidy -q<CR>
 au Filetype perl map <F7> :%!perltidy -q<CR><CR>
