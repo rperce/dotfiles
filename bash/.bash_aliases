@@ -21,3 +21,5 @@ alias gc='git commit -a -m'
 alias fixsd='sudo mount -o remount,exec /dev/mmcblk1p1'
 
 alias net='sudo netctl switch-to'
+alias which='alias | which -i'
+eval "$(thefuck --alias)"
