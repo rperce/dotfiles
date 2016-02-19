@@ -1,5 +1,8 @@
-local updatetext = require('widgets/updatetext')
+local timedcmd = require('widgets/timedcmd')
 
-local scmd = '/home/robert/path/wordtime -t'
-local lcmd = '/home/robert/path/wordtime'
-return updatetext(10, 'Time', scmd, 'Date/Time', lcmd)
+return timedcmd.new({
+    default     = 'Time',
+    cmd         = '/home/robert/path/wordtime -t',
+    t_default   = 'Date/Time',
+    t_cmd       = '/home/robert/path/wordtime'
+})

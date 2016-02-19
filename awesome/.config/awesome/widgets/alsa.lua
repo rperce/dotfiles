@@ -24,18 +24,15 @@ alsawidget.fn_spawn_mixer = function()
     awful.util.spawn(alsawidget.mixer)
 end
 alsawidget.fn_toggle_mute = function()
-    print(alsawidget.amixer_cmd('sset', 'toggle'))
     awful.util.spawn(alsawidget.amixer_cmd('sset', 'toggle'))
     vicious.force ({ alsawidget.bar })
 end
 alsawidget.fn_vol_up = function()
-    print(alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
-    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. '+'))
+    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. '+ unmute'))
     vicious.force ({ alsawidget.bar })
 end
 alsawidget.fn_vol_down = function()
-    print(alsawidget.amixer_cmd('sset', alsawidget.step .. '-'))
-    awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '-'))
+    awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '- unmute'))
     vicious.force ({ alsawidget.bar })
 end
 
