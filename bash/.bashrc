@@ -62,6 +62,7 @@ fi
 bind 'set mark-symlinked-directories=on'
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/vim'
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk/'
 
 # git branch tab completion
 test -f ~/.git-completion.bash && . $_
