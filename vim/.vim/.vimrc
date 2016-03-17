@@ -212,6 +212,5 @@ let g:syntastic_java_javac_config_file_enabled = 1
 
 let g:syntastic_tex_checkers = ['chktex']
 
-
 au Filetype perl map <F6> :!perltidy -q<CR>
 au Filetype perl map <F7> :%!perltidy -q<CR><CR>
