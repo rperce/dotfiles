@@ -2,26 +2,31 @@
 -- Default awesome theme --
 ---------------------------
 
-themedir = "~/.config/awesome/themes/flat"
+themedir = "~/.config/awesome/themes/flat-brown"
 theme = {}
 
 theme.font          = "sans 9"
 
-theme.bg_normal     = "#212121"
-theme.bg_focus      = "#FF6F00"
-theme.bg_urgent     = "#0D47A1"
+theme.bg_normal     = "#807462"
+theme.bg_focus      = "#665C49"
+theme.bg_urgent     = "#A69785"
 theme.bg_minimize   = "#444444"
-theme.bg_systray    = "#212121"
+theme.bg_systray    = "#807462"
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
+theme.fg_normal     = "#E8FDFF"
+theme.fg_focus      = "#B8FAFF"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = 0
-theme.border_normal = "#212121"
-theme.border_focus  = "#1565C0"
+theme.border_normal = "#807462"
+theme.border_focus  = "#B8FAFF"
 theme.border_marked = "#91231c"
+
+theme.widget_good   = 'green'
+theme.widget_okay   = '#f92'
+theme.widget_bad    = 'red'
+
 
 -- There are other variable sets
 -- overriding the default one when
@@ -33,7 +38,6 @@ theme.border_marked = "#91231c"
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 -- Example:
 --theme.tasklist_bg_focus = "#ff0000"
-theme.taglist_bg_focus = "#0D47A1"
 theme.tooltip_border_width = 4
 theme.tooltip_border_color = "#212121"
 theme.tooltip_bg_color = "#212121"
@@ -46,7 +50,6 @@ theme.taglist_squares_unsel = themedir.."/taglist/squarew.png"
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 theme.menu_height = 26
 theme.menu_width  = 100
 
@@ -97,7 +100,7 @@ theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
--- Define the icon theme for application icons. If not set then the icons 
+-- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 

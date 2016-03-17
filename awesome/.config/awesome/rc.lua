@@ -50,7 +50,7 @@ awful.util.spawn_with_shell("unclutter")
 awful.util.spawn_with_shell("echo -e \"++++\nPATH: $PATH\n++++\"")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.getdir("config") .. "/themes/flat/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/flat-brown/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 --
 -- silly chromebook audio
