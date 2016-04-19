@@ -21,7 +21,7 @@ function! InitMethods#RepeatInput() abort
     return InitMethods#RepeatChar(nr2char(getchar()), v:count1)
 endfunction
 
-function! DeleteTrailingWS() abort
+function! InitMethods#DeleteTrailingWS() abort
     let l:save = winsaveview()
     exec 'normal mz'
     " vint: -ProhibitCommandWithUnintendedSideEffect -ProhibitCommandRelyOnUser
