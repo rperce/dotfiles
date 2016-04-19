@@ -14,7 +14,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" How much history do we care about?
+" How much history do we care about (in terms of lines of commands)?
 set history=700
 
 " Auto-update when a file is externally changed
@@ -32,7 +32,8 @@ nnoremap <leader>a :wa<bar>qa<cr>
 set whichwrap+=<,>,h,l
 
 " Shorter timeoutlen
-set timeoutlen=500
+set timeoutlen=250
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual differences
@@ -49,6 +50,7 @@ highlight ColorColumn ctermbg=22
 set colorcolumn=90
 
 set nohlsearch
+
 " Literal tabs and trailing whitespace visible
 set listchars=tab:\|=,trail:~,extends:>,precedes:<
 set list
@@ -66,6 +68,8 @@ set noshowmode
 " for some context, as long as we scrolled there
 set scrolloff=3
 
+" Enable pretty pipe cursor on insert mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -120,8 +124,8 @@ nnoremap j gj
 nnoremap k gk
 
 " s and S work like i and a, but for a single character at a time (like r)
-nnoremap s :<C-U>exec "normal i" . InitMethods#RepeatInit()<CR>
-nnoremap S :<C-U>exec "normal a" . InitMethods#RepeatChar()<CR>
+nnoremap s :<C-U>exec "normal i" . InitMethods#RepeatInput()<CR>
+nnoremap S :<C-U>exec "normal a" . InitMethods#RepeatInput()<CR>
 
 " Move between windows a little easier
 noremap <C-j> <C-W>j
@@ -165,7 +169,7 @@ let g:JavaImpSortPkgSep = 0
 if filereadable('makefile') || filereadable('Rakefile')
     augroup Neomake
         autocmd!
-        autocmd! BufWritePost * Neomake!
+        autocmd! BufWritePost * silent Neomake!
     augroup END
 else
     augroup Neomake
@@ -173,6 +177,9 @@ else
         autocmd! BufWritePost * Neomake
     augroup END
 end
+
+" (but quietly)
+let g:neomake_verbose = 0
 
 " find makeprg
 if filereadable('makefile')
@@ -186,3 +193,7 @@ augroup GoyoLimelight
     autocmd! User GoyoEnter call InitMethods#GoyoEnter()
     autocmd! User GoyoLeave call InitMethods#GoyoLeave()
 augroup END
+
+command! Sw w !sudo tee %
+
+nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
