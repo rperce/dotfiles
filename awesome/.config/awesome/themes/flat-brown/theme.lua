@@ -23,9 +23,9 @@ theme.border_normal = "#807462"
 theme.border_focus  = "#B8FAFF"
 theme.border_marked = "#91231c"
 
-theme.widget_good   = 'green'
-theme.widget_okay   = '#f92'
-theme.widget_bad    = 'red'
+theme.widget_good   = '#2f2'
+theme.widget_okay   = '#c71'
+theme.widget_bad    = '#f99'
 
 
 -- There are other variable sets

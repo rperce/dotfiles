@@ -144,7 +144,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 widgets = {
-    alsa        = require('widgets/alsa'),
+    --alsa        = require('widgets/alsa'),
+    apw         = require('apw/widget'),
     pomodoro    = require('widgets/pomodoro'),
 
     battery     = require('widgets/battery'),
@@ -152,7 +153,7 @@ widgets = {
     clock       = wibox.layout.margin(require('widgets/clock'), 0, 5, 0, 0),
     separator   = wibox.widget.textbox(),
 }
-widgets.alsa_margin = wibox.layout.margin(widgets.alsa.bar,5,0,4,4),
+--widgets.alsa_margin = wibox.layout.margin(widgets.alsa.bar,5,0,4,4),
 
 --widgets.separator:set_text('⢾⡇')
 widgets.separator:set_text('║')
@@ -229,7 +230,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(widgets.alsa_margin)
+    right_layout:add(widgets.apw)
     --right_layout:add(widgets.wifi)
     right_layout:add(widgets.separator)
     right_layout:add(widgets.pomodoro)
@@ -350,9 +351,9 @@ clientkeys = awful.util.table.join(
 --globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume", function()
 --globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume", function()
 --globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute", function()
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F10", widgets.alsa.fn_vol_up))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F9", widgets.alsa.fn_vol_down))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F8", widgets.alsa.fn_toggle_mute))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F10", widgets.apw.Up))--alsa.fn_vol_up))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F9", widgets.apw.Down))--alsa.fn_vol_down))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F8", widgets.apw.ToggleMute))--alsa.fn_toggle_mute))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F7", function()
     awful.util.spawn('xbacklight -inc 5')
 end))

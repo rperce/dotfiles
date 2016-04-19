@@ -7,7 +7,7 @@ stops = {
     { percent = 100,
       title   = 'Discharging',
       text    = '',
-      color   = beautiful.widget_good or 'green' },
+      color   = beautiful.widget_good or '#2f2' },
     { percent = 50,
       title   = 'Halfway Depleted',
       text    = "You've got a while",
@@ -15,15 +15,15 @@ stops = {
     { percent = 15,
       title   = 'Losing Power!',
       text    = 'Maybe go find some power?',
-      color   = beautiful.widget_okay or '#c60' },
+      color   = beautiful.widget_okay or '#c71' },
     { percent = 5,
       title   = 'Low Power!',
       text    = 'Plug your laptop in as soon as possible!',
-      color   = beautiful.widget_bad or 'red' },
+      color   = beautiful.widget_bad or '#f44' },
     { percent = 2,
       title   = 'CRITICALLY LOW POWER',
       text    = 'OMG YOUR LAPTOP IS GOING TO DIE',
-      color   = beautiful.widget_bad or 'red' },
+      color   = beautiful.widget_bad or '#f44' },
 }
 
 out = timedcmd.new({

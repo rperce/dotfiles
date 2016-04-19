@@ -2,14 +2,14 @@ local awful     = require("awful")
 local naughty   = require("naughty")
 local vicious   = require("vicious")
 local alsawidget = {
-    amixer = "amixer",
-    channel = "Master",
+    control = "pactl",
+    card = "1",
     step = "5%",
     colors = {
 		unmute = "#AECF96",
 		mute = "#FF5656"
 	},
-	mixer = terminal .. " -e alsamixer", -- or whatever your preferred sound mixer is
+	mixer = "pavucontrol", -- or whatever your preferred sound mixer is
     notifications = {
         icons = {},
 		font = "Monospace 11", -- must be a monospace font for the bar to be sized consistently
@@ -18,21 +18,23 @@ local alsawidget = {
 	},
 }
 alsawidget.amixer_cmd = function(op, cmd)
-    return alsawidget.amixer .. ' ' .. op .. ' ' .. alsawidget.channel .. ' ' .. cmd
+    return alsawidget.control .. ' ' alsawidget.op .. ' ' .. alsawidget.card .. ' ' .. cmd
 end
 alsawidget.fn_spawn_mixer = function()
     awful.util.spawn(alsawidget.mixer)
 end
 alsawidget.fn_toggle_mute = function()
-    awful.util.spawn(alsawidget.amixer_cmd('sset', 'toggle'))
+    awful.util.spawn(alsawidget.amixer_cmd('set-sink-mute', 'toggle'))
     vicious.force ({ alsawidget.bar })
 end
 alsawidget.fn_vol_up = function()
-    awful.util.spawn(alsawidget.amixer_cmd('sset', alsawidget.step .. '+ unmute'))
+    awful.util.spawn(alsawidget.amixer_cmd('set-sink-mute', '0'))
+    awful.util.spawn(alsawidget.amixer_cmd('set-sink-volume', '+'..alsawidget.step))
     vicious.force ({ alsawidget.bar })
 end
 alsawidget.fn_vol_down = function()
-    awful.util.spawn (alsawidget.amixer_cmd('sset', alsawidget.step .. '- unmute'))
+    awful.util.spawn(alsawidget.amixer_cmd('set-sink-mute', '0'))
+    awful.util.spawn (alsawidget.amixer_cmd('set-sink-volume', '-'..alsawidget.step))
     vicious.force ({ alsawidget.bar })
 end
 
