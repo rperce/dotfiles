@@ -1,6 +1,6 @@
 [options]
 font = Fantasque Sans Mono 12
-browser = chromium
+browser = qutebrowser
 
 [colors]
 background = rgba(0, 0, 0, 1)
