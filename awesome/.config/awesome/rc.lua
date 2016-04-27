@@ -112,8 +112,8 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names =          { "main", "chat", "code", "gimp", "game", 6, 7, 8, 9 },
-    layouts = laymap({ 4,      4,     4,      4,      4,      4, 4, 4, 4 })
+    names =          { "main", "chat", "code", "gimp", "game", "tune", 7, 8, 9 },
+    layouts = laymap({ 4,      4,      4,      4,      4,      4,      4, 4, 4 })
 }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
