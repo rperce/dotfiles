@@ -25,5 +25,5 @@ alias which='alias | which -i'
 eval "$(thefuck --alias)"
 
 alias ixio="curl -F 'f:1=<-' ix.io"
-alias mount="sudo mount -o gid=1000,uid=1000"
 alias vim="nvim"
+function mnt { sudo mount $1 $2 && chown robert $2; }
