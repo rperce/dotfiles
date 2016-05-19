@@ -9,6 +9,11 @@ Plug 'benekastah/neomake'
 Plug 'rperce/JavaImp.vim', { 'for': 'java', 'via': 'ssh' }
 Plug 'rperce/goyo.vim', { 'via': 'ssh' }
 Plug 'junegunn/limelight.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'airblade/vim-gitgutter'
+Plug 'tommcdo/vim-lion'
+Plug 'torbiak/probe'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -33,6 +38,9 @@ set whichwrap+=<,>,h,l
 
 " Shorter timeoutlen
 set timeoutlen=250
+
+" Short updatetime -- more cpu, barely, but up-to-date gitgutter. In ms.
+set updatetime=500
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
