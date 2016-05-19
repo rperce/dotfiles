@@ -1,7 +1,6 @@
 scriptencoding utf-8
 call plug#begin()
 Plug 'vim-scripts/vimwiki'
-Plug 'joom/latex-unicoder.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'cespare/vim-align'
 Plug 'ap/vim-css-color'
@@ -140,6 +139,12 @@ noremap <C-j> <C-W>j
 noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
+noremap <Tab> <C-W>w
+noremap <S-Tab> <C-W>W
+
+" fast split opening
+nnoremap <expr><silent> \| !v:count ? "<C-W>v<C-W><Right>" : '\|'
+nnoremap <expr><silent> _  !v:count ? "<C-W>s<C-W><Down>"  : '_'
 
 " Tab management
 map <leader>tn :tabnew<cr>
