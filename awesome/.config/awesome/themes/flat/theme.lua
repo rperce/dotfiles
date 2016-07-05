@@ -38,6 +38,8 @@ theme.tooltip_border_width = 4
 theme.tooltip_border_color = "#212121"
 theme.tooltip_bg_color = "#212121"
 
+theme.useless_gap_width = 10
+
 
 -- Display the taglist squares
 theme.taglist_squares_sel   = themedir.."/taglist/squarefw.png"

@@ -28,7 +28,7 @@ stops = {
 
 out = timedcmd.new({
     default = 'Battery',
-    cmd     = '/home/robert/path/shortacpi'
+    cmd     = '~/path/shortacpi'
 })
 
 out.last = -1

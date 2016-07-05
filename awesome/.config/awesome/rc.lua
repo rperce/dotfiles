@@ -40,26 +40,18 @@ do
 end
 -- }}}
 
-awful.util.spawn_with_shell("/home/robert/path/setpath")
+awful.util.spawn_with_shell("~/path/setpath")
 awful.util.spawn_with_shell("setxkbmap -option compose:ralt")
-
-awful.util.spawn_with_shell("compton -b")
+awful.util.spawn_with_shell("pulseaudio --start")
+awful.util.spawn_with_shell("compton")
+--awful.util.spawn_with_shell("conky")
 awful.util.spawn_with_shell("unclutter")
---awful.util.spawn_with_shell("pulseaudio --start")
 --awful.util.spawn_with_shell("start-pulseaudio-x11")
 awful.util.spawn_with_shell("echo -e \"++++\nPATH: $PATH\n++++\"")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.getdir("config") .. "/themes/flat-brown/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/flat/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
---
--- silly chromebook audio
-awful.util.spawn_with_shell('amixer -c 0 set "Left Headphone Mixer Left DAC" unmute')
-awful.util.spawn_with_shell('amixer -c 0 set "Right Headphone Mixer Right DAC" unmute')
-awful.util.spawn_with_shell('amixer -c 0 set "Left Speaker Mixer Left DAC" unmute')
-awful.util.spawn_with_shell('amixer -c 0 set "Left Speaker Mixer Right DAC" unmute')
-awful.util.spawn_with_shell('amixer -c 0 set "Right Speaker Mixer Left DAC" unmute')
-awful.util.spawn_with_shell('amixer -c 0 set "Right Speaker Mixer Right DAC" unmute')
 
 -- This is used later as the default terminal and editor to run.
 terminal = "termite -e tmux"
@@ -74,23 +66,21 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
+lain.layout.centerfair.nmaster = 3
+lain.layout.centerfair.ncol = 2
 local layouts =
 {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
     lain.layout.centerfair,
     lain.layout.uselesstile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
     lain.layout.uselessfair,
-    awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    --awful.layout.suit.spiral.dwindle,
+    --awful.layout.suit.max,
+    --awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.magnifier
 }
 function laymap(nums)
     out = {}
@@ -113,7 +103,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
     names =          { "main", "chat", "code", "gimp", "game", "tune", 7, 8, 9 },
-    layouts = laymap({ 4,      4,      4,      4,      4,      4,      4, 4, 4 })
+    layouts = laymap({ 2,      2,      2,      2,      2,      2,      2, 2, 2 })
 }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -148,7 +138,7 @@ widgets = {
     apw         = require('apw/widget'),
     pomodoro    = require('widgets/pomodoro'),
 
-    battery     = require('widgets/battery'),
+    --battery     = require('widgets/battery'),
 
     clock       = wibox.layout.margin(require('widgets/clock'), 0, 5, 0, 0),
     separator   = wibox.widget.textbox(),
@@ -234,8 +224,8 @@ for s = 1, screen.count() do
     --right_layout:add(widgets.wifi)
     right_layout:add(widgets.separator)
     right_layout:add(widgets.pomodoro)
-    right_layout:add(widgets.separator)
-    right_layout:add(widgets.battery)
+    --right_layout:add(widgets.separator)
+    --right_layout:add(widgets.battery)
     right_layout:add(widgets.separator)
     right_layout:add(widgets.clock)
 
@@ -249,7 +239,7 @@ for s = 1, screen.count() do
 end
 
 -- Conky placeholder
--- myconkybox = awful.wibox({ position = "right", screen = 2, ontop = false, width = 210, height = 1 })
+--myconkybox = awful.wibox({ position = "right", screen = 2, ontop = false, width = 210, height = 1 })
 -- }}}
 
 -- {{{ Mouse bindings
@@ -361,7 +351,7 @@ globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F6", function()
     awful.util.spawn('xbacklight -dec 5')
 end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, }, "BackSpace", function()
-    awful.util.spawn('/home/robert/path/lock')
+    awful.util.spawn('/home/robertp/path/lock')
 end))
 
 

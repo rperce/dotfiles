@@ -69,8 +69,6 @@ test -f ~/.git-completion.bash && . $_
 [ -n "$XTERM_VERSION" ] && transset-df -a > /dev/null
 
 GPG_TTY=$(tty); export GPG_TTY;
-PATH="/home/robert/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="/home/robert/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/robert/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/robert/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/robert/perl5"; export PERL_MM_OPT;
+if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
+    source ~/perl5/perlbrew/etc/bashrc
+fi

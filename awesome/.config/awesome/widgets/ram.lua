@@ -11,7 +11,7 @@ ramwidget:set_text('Ram Usage')
 ramtimer = timer({ timeout = 5 })
 ramtimer:connect_signal("timeout",
     function()
-        local file = '/home/robert/.config/awesome/ramusage'
+        local file = '~/.config/awesome/ramusage'
         os.execute(ram_cmd('Active') .. '>> ' .. file)
         os.execute('tail -n 9 ' .. file .. ' | sponge ' .. file)
         os.execute('cat ' .. file .. ' > ' .. file .. '.full')
