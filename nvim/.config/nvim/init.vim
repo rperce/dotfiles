@@ -2,17 +2,16 @@ scriptencoding utf-8
 call plug#begin()
 Plug 'vim-scripts/vimwiki'
 Plug 'itchyny/lightline.vim'
-Plug 'cespare/vim-align'
 Plug 'ap/vim-css-color'
 Plug 'benekastah/neomake'
 Plug 'rperce/JavaImp.vim', { 'for': 'java', 'via': 'ssh' }
-Plug 'rperce/goyo.vim', { 'via': 'ssh' }
-Plug 'junegunn/limelight.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'airblade/vim-gitgutter'
 Plug 'tommcdo/vim-lion'
 Plug 'torbiak/probe'
+Plug 'tpope/vim-fugitive'
+Plug 'rperce/L-syntax'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -173,10 +172,22 @@ let g:lightline = {
     \ 'subseparator': {'left': '⡇⡷', 'right': '⢾⢸'}
     \ }
 
-let g:JavaImpPaths =
-    \ $JAVA_HOME . 'jre/lib/rt.jar'
+let g:JavaImpPaths = $JAVA_HOME . 'jre/lib/rt.jar'
 let g:JavaImpDataDir = $HOME . '/.config/nvim/JavaImp'
 let g:JavaImpSortPkgSep = 0
+
+let g:neomake_cpp_clang_maker = {
+    \ 'args': ['-fsyntax-only', '-Wall', '-Wextra', '-std=c++11'],
+    \ 'errorformat':
+        \ '%-G%f:%s:,' .
+        \ '%f:%l:%c: %trror: %m,' .
+        \ '%f:%l:%c: %tarning: %m,' .
+        \ '%f:%l:%c: %m,'.
+        \ '%f:%l: %trror: %m,'.
+        \ '%f:%l: %tarning: %m,'.
+        \ '%f:%l: %m',
+    \ }
+
 
 " Neomake aaaaaaall the things
 if filereadable('makefile') || filereadable('Rakefile')
@@ -191,9 +202,6 @@ else
     augroup END
 end
 
-" (but quietly)
-let g:neomake_verbose = 0
-
 " find makeprg
 if filereadable('makefile')
     setlocal makeprg=make
@@ -201,12 +209,11 @@ elseif filereadable('Rakefile')
     setlocal makeprg=rake
 end
 
-augroup GoyoLimelight
-    autocmd!
-    autocmd! User GoyoEnter call InitMethods#GoyoEnter()
-    autocmd! User GoyoLeave call InitMethods#GoyoLeave()
-augroup END
-
 command! Sw w !sudo tee %
 
 nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:probe_ignore_files = [
+    \ 'node_modules/',
+    \ '.meteor/'
+    \ ]
