@@ -2,7 +2,7 @@
 add=(
     /home/robert/path
     /home/robert/path/dispatch-chrony
-    /media/SD_CARD/texlive/bin/i386-linux
+    /media/SD_CARD/texlive/bin/x86_64-linux
     /home/robert/.gem/ruby/2.3.0/bin
 )
 
