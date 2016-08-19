@@ -2,7 +2,8 @@ scriptencoding utf-8
 call plug#begin()
 Plug 'vim-scripts/vimwiki'
 Plug 'itchyny/lightline.vim'
-Plug 'ap/vim-css-color'
+"Plug 'ap/vim-css-color'
+Plug 'rperce/vim-css-color', { 'via': 'ssh' }
 Plug 'benekastah/neomake'
 Plug 'rperce/JavaImp.vim', { 'for': 'java', 'via': 'ssh' }
 Plug 'pangloss/vim-javascript'
@@ -166,13 +167,14 @@ let g:vimwiki_list = [{'path': '~/vimwiki'}]
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscellaneous
 """""""""""""""""""""""""""""""""""""""""""""""""""
+" pretty statusline
 let g:lightline = {
     \ 'separator': {'left': '▓▓▒', 'right': '▒▓▓'},
     \ 'subseparator': {'left': '⡇⡷', 'right': '⢾⢸'}
     \ }
 
-let g:JavaImpPaths =
-    \ $JAVA_HOME . 'jre/lib/rt.jar'
+" JavaImp autogens java imports; need some config
+let g:JavaImpPaths = $JAVA_HOME . 'jre/lib/rt.jar'
 let g:JavaImpDataDir = $HOME . '/.config/nvim/JavaImp'
 let g:JavaImpSortPkgSep = 0
 
@@ -189,30 +191,24 @@ else
     augroup END
 end
 
+" (but quietly)
+let g:neomake_verbose = 0
+
+" Add -std=c++11.
+let g:neomake_cpp_clang_maker = {
+    \ 'args' : ['-fsyntax-only', '-std=c++11', '-Wall', '-Wextra'],
+    \ }
+
+" perlcritic harder
 let g:neomake_perl_perlcritic_maker = {
     \ 'args' : ['-3', '--quiet', '--nocolor', '--verbose', '\\%f:\\%l:\\%c:(\\%s) \\%m (\\%e)\\n'],
-    \ 'errorformat': '%f:%l:%c:%m,'
-    \ }
-let g:neomake_perl_enabled_makers = [ 'perlcritic' ]
-
-let g:neomake_cpp_clang_maker = {
-    \ 'args' : ['-fsyntax-only', '-std=c++0x', '-Wall', '-Wextra'],
-    \ 'errorformat':
-        \ '%-G%f:%s:,' .
-        \ '%f:%l:%c: %trror: %m,' .
-        \ '%f:%l:%c: %tarning: %m,' .
-        \ '%f:%l:%c: %m,'.
-        \ '%f:%l: %trror: %m,'.
-        \ '%f:%l: %tarning: %m,'.
-        \ '%f:%l: %m',
     \ }
 
+" Dark shading for each indent level
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
 
-" (but quietly)
-let g:neomake_verbose = 0
 
 " find makeprg
 if filereadable('makefile')
@@ -221,12 +217,14 @@ elseif filereadable('Rakefile')
     setlocal makeprg=rake
 end
 
-augroup GoyoLimelight
-    autocmd!
-    autocmd! User GoyoEnter call InitMethods#GoyoEnter()
-    autocmd! User GoyoLeave call InitMethods#GoyoLeave()
-augroup END
-
+" for when you accidentally open a root-owned file as not-root
 command! Sw w !sudo tee %
 
+" show current highlight groups for whatever symbols are under the cursor.
+" Useful for adding definitions to ap/vim-css-color — to date, I've contributed color
+" definitions for .Xdefaults, .Xresources, etc., and lua
 nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+au Filetype perl map <F6> :!perltidy -q<CR>
+au Filetype perl map <F7> :%!perltidy -q<CR><CR>
+
