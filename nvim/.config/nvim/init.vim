@@ -57,15 +57,16 @@ set colorcolumn=90
 
 set nohlsearch
 
-" Literal tabs and trailing whitespace visible
-set listchars=tab:\|=,trail:~,extends:>,precedes:<
-set list
-
 " Current cursor's line highlighted
 set cursorline
 
 " colorscheme
 colorscheme muon
+
+" Literal tabs and trailing whitespace visible
+set listchars=tab:┆-,trail:~,extends:>,precedes:<
+set list
+hi SpecialKey ctermfg=darkgray
 
 " Lightline already tells me this
 set noshowmode
@@ -106,6 +107,9 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+" But if my file already has tabs, that's okay
+set copyindent
 
 " Hard wrap text at 90 characters (80 plus some wiggle room)
 set textwidth=90
