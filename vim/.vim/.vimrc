@@ -172,6 +172,7 @@ map <leader>kw :call DeleteTrailingWS()<cr>
 " Kill the Windows ^M if the encodings are screwy
 map <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+
 " Toggle printing whitespace
 nnoremap <leader>l :set list!<CR>
 
@@ -192,6 +193,12 @@ let g:lightline = {
 
 " Set vimwiki to be its own dir
 let g:vimwiki_list = [{'path': '~/vimwiki'}]
+
+" ctrlp is a silly binding because ctrl is hard to hit
+let g:ctrlp_map = '<leader>f'
+
+" NERDtree plz
+noremap <leader>n :NERDTreeToggle<CR>
 
 " Syntastic assorted settings
 let g:syntastic_always_populate_loc_list = 1

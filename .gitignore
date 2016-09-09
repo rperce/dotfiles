@@ -1,2 +1,4 @@
-weechat/.weechat/logs/*
-weechat/.weechat/weechat.log
+weechat/
+nvim/.config/nvim/.netrwhist
+nvim/.config/nvim/JavaImp/choices.txt
+awesome/.config/awesome/wallpaper

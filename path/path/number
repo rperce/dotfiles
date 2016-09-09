@@ -3,7 +3,7 @@
        +  ['seven', 'eight', 'nine',  'ten',   'eleven', 'twelve'] \
        +  ['thir', 'four', 'fif', 'six', 'seven', 'eigh', 'nine'].map{ |s| s + 'teen' }
 @tens  =  ['','', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
-@scale =  ['', 'thousand', 'million', 'billion', 'trillion']
+@scale =  ['', 'thousand', 'million', 'billion', 'trillion', 'quadrillion']
 
 def tens(n)
     if n < 20

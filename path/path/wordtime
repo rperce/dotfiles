@@ -33,10 +33,14 @@ def time(time)
 end
 
 out = ''
-[   ['%A %B',   lambda { |w| w.downcase } ],
-    ['%d',      lambda { |w| ' '  + ordinal(w.to_i) } ],
-    ['%I:%M',   lambda { |w| ', ' + time(w) } ]
-].each do |format, method|
+over = [['%A %B',   lambda { |w| w.downcase } ],
+        ['%d',      lambda { |w| ' '  + ordinal(w.to_i) } ],
+        ['%I:%M',   lambda { |w| ', ' + time(w) } ]]
+if ARGV[0] == '-t' then
+    over = [['%I:%M',   lambda { |w| time(w) } ]]
+end
+
+over.each do |format, method|
     word = `date "+#{format}"`.strip
     out += method.call(word)
 end
