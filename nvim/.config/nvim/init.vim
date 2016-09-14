@@ -12,6 +12,8 @@ Plug 'tommcdo/vim-lion'
 Plug 'torbiak/probe'
 Plug 'tpope/vim-fugitive'
 Plug 'rperce/L-syntax'
+Plug 'mbbill/undotree'
+Plug 'junegunn/fzf'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,6 +63,7 @@ set nohlsearch
 set cursorline
 
 " colorscheme
+set termguicolors
 colorscheme muon
 
 " Literal tabs and trailing whitespace visible
@@ -103,7 +106,7 @@ set nowrap
 set autoindent
 
 " All I want for Christmas is spaces
-set expandtab
+" set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -157,8 +160,6 @@ map <leader>tx :tabclose<cr>
 " Open a new tab with current buffer's path
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/<cr>
 
-nnoremap <leader>kw :call InitMethods#DeleteTrailingWS()<cr>
-
 " Kill the Windows ^M if the encodings are screwy
 nnoremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -206,6 +207,9 @@ else
     augroup END
 end
 
+nnoremap <leader>ev :vs $MYVIMRC<CR>
+nnoremap <leader>sv :so %<CR>
+
 " find makeprg
 if filereadable('makefile')
     setlocal makeprg=make
@@ -217,7 +221,8 @@ command! Sw w !sudo tee %
 
 nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-let g:probe_ignore_files = [
-    \ 'node_modules/',
-    \ '.meteor/'
-    \ ]
+nnoremap <leader>f :FZF<CR>
+nnoremap <silent> <F1> :UndotreeToggle<CR>
+
+nnoremap <leader>kw :call InitMethods#DeleteTrailingWS()<cr>
+
