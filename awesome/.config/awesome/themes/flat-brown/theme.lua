@@ -5,7 +5,7 @@
 themedir = "~/.config/awesome/themes/flat-brown"
 theme = {}
 
-theme.font          = "sans 9"
+theme.font          = "sans 11"
 
 theme.bg_normal     = "#807462"
 theme.bg_focus      = "#665C49"
@@ -104,5 +104,6 @@ theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
+theme.useless_gap_width = 10
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

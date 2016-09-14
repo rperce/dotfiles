@@ -41,13 +41,13 @@ end
 -- }}}
 
 awful.util.spawn_with_shell("/home/robert/path/setpath")
-awful.util.spawn_with_shell("setxkbmap -option compose:ralt")
+awful.util.spawn_with_shell("setxkbmap -option compose:ralt -option caps:super -option terminate:ctrl_alt_bksp -option shift:both_capslock")
 
 awful.util.spawn_with_shell("compton -b")
 awful.util.spawn_with_shell("unclutter")
+
 --awful.util.spawn_with_shell("pulseaudio --start")
 --awful.util.spawn_with_shell("start-pulseaudio-x11")
-awful.util.spawn_with_shell("echo -e \"++++\nPATH: $PATH\n++++\"")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.getdir("config") .. "/themes/flat-brown/theme.lua")
@@ -144,8 +144,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 widgets = {
-    --alsa        = require('widgets/alsa'),
-    apw         = require('apw/widget'),
+    alsa        = require('widgets/alsa'),
+    --apw         = require('apw/widget'),
     pomodoro    = require('widgets/pomodoro'),
 
     battery     = require('widgets/battery'),
@@ -230,7 +230,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(widgets.apw)
+    right_layout:add(widgets.alsa.widget)
     --right_layout:add(widgets.wifi)
     right_layout:add(widgets.separator)
     right_layout:add(widgets.pomodoro)
@@ -348,17 +348,14 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end, "Toggle maximized")
 )
---globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume", function()
---globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume", function()
---globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute", function()
---globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F10", widgets.apw.Up))--alsa.fn_vol_up))
---globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F9", widgets.apw.Down))--alsa.fn_vol_down))
---globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F8", widgets.apw.ToggleMute))--alsa.fn_toggle_mute))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F7", function()
-    awful.util.spawn('xbacklight -inc 5')
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioRaiseVolume", widgets.alsa.fn_vol_up))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioLowerVolume", widgets.alsa.fn_vol_down))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86AudioMute", widgets.alsa.fn_toggle_mute))
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86MonBrightnessDown", function()
+    awful.util.spawn('light -U 5')
 end))
-globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "F6", function()
-    awful.util.spawn('xbacklight -dec 5')
+globalkeys = awful.util.table.join(globalkeys, awful.key({ }, "XF86MonBrightnessUp", function()
+    awful.util.spawn('light -A 5')
 end))
 globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, }, "BackSpace", function()
     awful.util.spawn('/home/robert/path/lock')

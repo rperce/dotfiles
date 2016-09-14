@@ -45,12 +45,12 @@ out.timer:connect_signal('timeout', function()
         if percent == nil then percent = 100 end
         for i = #stops, 1, -1 do
             stop = stops[i]
-            if out.last > stop.percent + 1 and percent < stop.percent + 1 then
+            if out.last > stop.percent and percent <= stop.percent then
                 naughty.notify({ title=stop.title, text=stop.text })
                 out.color = stop.color
-                out.last = stop.percent
             end
         end
+        out.last = percent
         out:set_markup('<span color="' .. out.color .. '">' .. out.text .. '</span>')
     end
 end)
