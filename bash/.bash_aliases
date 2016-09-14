@@ -22,8 +22,8 @@ alias fixsd='sudo mount -o remount,exec /dev/mmcblk1p1'
 
 alias net='sudo netctl switch-to'
 alias which='alias | which -i'
-eval "$(thefuck --alias)"
 
 alias ixio="curl -F 'f:1=<-' ix.io"
 alias vim="nvim"
-function mnt { sudo mount $1 $2 && chown robert $2; }
+
+alias steam=$'LD_PRELOAD=\'/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so\' /usr/bin/steam'

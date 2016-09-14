@@ -38,7 +38,7 @@ alias rm='rm -i'
 
 # include .bash_aliases
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+    . ~/.bash_aliases
 fi
 
 if [ -f $DOT_PATH_FILE ]; then
@@ -66,6 +66,12 @@ export JAVA_HOME='/usr/lib/jvm/java-8-openjdk/'
 
 # git branch tab completion
 test -f ~/.git-completion.bash && . $_
+test -f /usr/share/fzf/key-bindings.bash && . $_
+test -f /usr/share/fzf/completion.bash && . $_
+
+export HISTCONTROL='ignoreboth'
+export HISTIGNORE='ls:cd:q'
+
 [ -n "$XTERM_VERSION" ] && transset-df -a > /dev/null
 
 GPG_TTY=$(tty); export GPG_TTY;
