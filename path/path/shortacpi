@@ -9,4 +9,5 @@ acpi | sed -e 's/Battery .: .*harging, //'  \
            -e 's/:[0-9][0-9] /m /'          \
            -e 's/:/h /'                     \
            -e 's/ 0/ /'                     \
-           -e 's/h  Full, //'
+           -e 's/h  Full, //'               \
+           -e 's/, rate information unavailable//'
