@@ -1,6 +1,5 @@
 local wibox     = require('wibox')
 local ramwidget = wibox.widget.textbox()
-local get_output= require('get_output')
 local ram_cmd = function(get, file)
     return 'cat /proc/meminfo '
         .. '| grep "' .. get .. ':" '
@@ -16,7 +15,7 @@ ramtimer:connect_signal("timeout",
         os.execute('tail -n 9 ' .. file .. ' | sponge ' .. file)
         os.execute('cat ' .. file .. ' > ' .. file .. '.full')
         os.execute(ram_cmd('MemTotal') .. '>> ' .. file .. '.full')
-        text = get_output('cat ' .. file .. '.full '
+        text = awful.util.pread('cat ' .. file .. '.full '
                        .. '| sparklines '
                        .. '| sed "s/.$//"')
         ramwidget:set_text(text)

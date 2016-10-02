@@ -146,7 +146,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 widgets = {
     alsa        = require('widgets/alsa'),
     --apw         = require('apw/widget'),
-    pomodoro    = require('widgets/pomodoro'),
+    pomodoro    = require('widgets/pomodoro-awm/pomodoro'),
 
     battery     = require('widgets/battery'),
 

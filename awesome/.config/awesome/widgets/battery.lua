@@ -1,7 +1,7 @@
 local timedcmd   = require('widgets/timedcmd')
-local get_output = require('get_output')
 local naughty    = require('naughty')
 local beautiful  = require('beautiful')
+local awful      = require('awful')
 
 stops = {
     { percent = 100,
@@ -33,7 +33,7 @@ out = timedcmd.new({
 
 out.last = -1
 out.timer:connect_signal('timeout', function()
-    updown = get_output('echo ' .. out.text .. ' | cut -d" " -f4')
+    updown = awful.util.pread('echo ' .. out.text .. ' | cut -d" " -f4')
     if updown == "⚡" then
         out.last = -1
         out:set_markup(out.text)
@@ -41,7 +41,7 @@ out.timer:connect_signal('timeout', function()
         if out.last == -1 then
             out.last = 102
         end
-        percent = tonumber(get_output('echo ' .. out.text .. ' | cut -d% -f1'))
+        percent = tonumber(awful.util.pread('echo ' .. out.text .. ' | cut -d% -f1'))
         if percent == nil then percent = 100 end
         for i = #stops, 1, -1 do
             stop = stops[i]

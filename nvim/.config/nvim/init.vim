@@ -63,7 +63,6 @@ set nohlsearch
 set cursorline
 
 " colorscheme
-set termguicolors
 colorscheme muon
 
 " Literal tabs and trailing whitespace visible
@@ -106,7 +105,7 @@ set nowrap
 set autoindent
 
 " All I want for Christmas is spaces
-" set expandtab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4

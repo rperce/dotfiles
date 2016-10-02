@@ -27,3 +27,6 @@ alias ixio="curl -F 'f:1=<-' ix.io"
 alias vim="nvim"
 
 alias steam=$'LD_PRELOAD=\'/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so\' /usr/bin/steam'
+
+export KPARAMS="root=/dev/nvme0n1p3 rw initrd=/initramfs-linux.img resume=/dev/nvme0n1p2"
+alias efibootset=$'efibootmgr -d /dev/nvme0n1 -p 1 -c -L "Arch Linux" -l /vmlinuz-linux -u "'"$KPARAMS"'"'

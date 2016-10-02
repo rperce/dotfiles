@@ -31,3 +31,6 @@
 [submodule "vim/.vim/bundle/ctrlp.vim"]
 	path = vim/.vim/bundle/ctrlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim
+[submodule "awesome/.config/awesome/widgets/pomodoro-awm"]
+	path = awesome/.config/awesome/widgets/pomodoro-awm
+	url = git@github.com:rperce/pomodoro-awm.git

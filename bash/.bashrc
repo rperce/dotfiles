@@ -74,6 +74,8 @@ export HISTIGNORE='ls:cd:q'
 
 [ -n "$XTERM_VERSION" ] && transset-df -a > /dev/null
 
+export FZF_DEFAULT_COMMAND='rg --files'
+
 GPG_TTY=$(tty); export GPG_TTY;
 PATH="/home/robert/perl5/bin${PATH+:}${PATH}"; export PATH;
 PERL5LIB="/home/robert/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;

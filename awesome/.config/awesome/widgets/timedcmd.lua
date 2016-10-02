@@ -1,6 +1,5 @@
 local wibox      = require('wibox')
 local awful      = require('awful')
-local get_output = require('get_output')
 
 timers = {get = function(index)
     if timers[index] ~= nil then
@@ -15,7 +14,7 @@ hook_timer_with_cmd = function(timeout, obj, cmd)
     obj.timer = obj.timer or timers.get(timeout)
     if cmd ~= nil then
         obj.timer:connect_signal('timeout', function()
-            text = get_output(cmd)
+            text = awful.util.pread(cmd)
             if text ~= nil then
                 obj:set_text(text)
                 obj.text = text
