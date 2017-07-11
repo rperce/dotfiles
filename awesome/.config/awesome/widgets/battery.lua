@@ -28,30 +28,29 @@ stops = {
 
 out = timedcmd.new({
     default = 'Battery',
-    cmd     = '/home/robert/path/shortacpi'
-})
-
-out.last = -1
-out.timer:connect_signal('timeout', function()
-    updown = awful.util.pread('echo ' .. out.text .. ' | cut -d" " -f4')
-    if updown == "⚡" then
-        out.last = -1
-        out:set_markup(out.text)
-    else
-        if out.last == -1 then
-            out.last = 102
-        end
-        percent = tonumber(awful.util.pread('echo ' .. out.text .. ' | cut -d% -f1'))
-        if percent == nil then percent = 100 end
-        for i = #stops, 1, -1 do
-            stop = stops[i]
-            if out.last > stop.percent and percent <= stop.percent then
-                naughty.notify({ title=stop.title, text=stop.text })
-                out.color = stop.color
+    cmd     = '/home/robert/path/shortacpi',
+    fn      = function(self, output)
+        self.last = self.last or -1
+        updown = read('echo "' .. output .. '" | cut -d" " -f4')
+        if updown == "⚡" then
+            self.last = -1
+            --self.markup = output
+        else
+            if self.last == -1 then
+                self.last = 102
             end
+            percent = tonumber(read('echo ' .. output .. ' | cut -d% -f1'))
+            if percent == nil then percent = 100 end
+            for i = #stops, 1, -1 do
+                stop = stops[i]
+                if self.last > stop.percent and percent <= stop.percent then
+                    naughty.notify({ title=stop.title, text=stop.text })
+                    self.color = stop.color
+                end
+            end
+            self.last = percent
+            self.markup = '<span color="' .. self.color .. '">' .. output .. '</span>'
         end
-        out.last = percent
-        out:set_markup('<span color="' .. out.color .. '">' .. out.text .. '</span>')
     end
-end)
+})
 return out

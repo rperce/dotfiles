@@ -1,5 +1,6 @@
 scriptencoding utf-8
 call plug#begin()
+"Plug 'ajmwagar/vim-dues'
 Plug 'vim-scripts/vimwiki'
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
@@ -14,6 +15,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'rperce/L-syntax'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug '~/code/SmarterTabs'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -64,6 +69,9 @@ set cursorline
 
 " colorscheme
 colorscheme muon
+" muon has really dark, unreadable comments. Let's brighten them up!
+hi Comment ctermfg=DarkYellow cterm=bold
+"colorscheme dues
 
 " Literal tabs and trailing whitespace visible
 set listchars=tab:┆-,trail:~,extends:>,precedes:<
@@ -105,7 +113,7 @@ set nowrap
 set autoindent
 
 " All I want for Christmas is spaces
-set expandtab
+" set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -180,6 +188,18 @@ let g:JavaImpPaths = $JAVA_HOME . 'jre/lib/rt.jar'
 let g:JavaImpDataDir = $HOME . '/.config/nvim/JavaImp'
 let g:JavaImpSortPkgSep = 0
 
+let g:neomake_cpp_clangcheck_maker = {
+        \ 'exe': 'clang-check',
+        \ 'args': ['%:p', '-std=c++11'],
+        \ 'errorformat':
+            \ '%-G%f:%s:,' .
+            \ '%f:%l:%c: %trror: %m,' .
+            \ '%f:%l:%c: %tarning: %m,' .
+            \ '%f:%l:%c: %m,'.
+            \ '%f:%l: %trror: %m,'.
+            \ '%f:%l: %tarning: %m,'.
+            \ '%f:%l: %m',
+        \ }
 let g:neomake_cpp_clang_maker = {
     \ 'args': ['-fsyntax-only', '-Wall', '-Wextra', '-std=c++11'],
     \ 'errorformat':
@@ -225,3 +245,7 @@ nnoremap <silent> <F1> :UndotreeToggle<CR>
 
 nnoremap <leader>kw :call InitMethods#DeleteTrailingWS()<cr>
 
+set hidden
+let g:racer_cmd = "/home/robert/.cargo/bin/racer"
+let $RUST_SRC_PATH="/home/robert/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
+let g:racer_experimental_completer = 1

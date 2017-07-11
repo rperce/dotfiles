@@ -59,7 +59,7 @@ if [ "$TERM" = "linux" ]; then
     clear; unset colors
 fi
 
-bind 'set mark-symlinked-directories=on'
+bind 'set mark-symlinked-directories on'
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/nvim'
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk/'
@@ -75,6 +75,8 @@ export HISTIGNORE='ls:cd:q'
 [ -n "$XTERM_VERSION" ] && transset-df -a > /dev/null
 
 export FZF_DEFAULT_COMMAND='rg --files'
+
+export RUST_SRC_PATH="/home/robert/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
 GPG_TTY=$(tty); export GPG_TTY;
 PATH="/home/robert/perl5/bin${PATH+:}${PATH}"; export PATH;

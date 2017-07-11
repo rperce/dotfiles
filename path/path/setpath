@@ -4,6 +4,8 @@ add=(
     /home/robert/path/dispatch-chrony
     /media/SD_CARD/texlive/bin/x86_64-linux
     /home/robert/.gem/ruby/2.3.0/bin
+    /home/robert/.gem/ruby/2.4.0/bin
+    /home/robert/.cargo/bin
 )
 
 function arrayjoin { local IFS="$1"; shift; echo "$*"; }
