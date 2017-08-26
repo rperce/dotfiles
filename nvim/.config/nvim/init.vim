@@ -1,24 +1,21 @@
 scriptencoding utf-8
 call plug#begin()
-"Plug 'ajmwagar/vim-dues'
 Plug 'vim-scripts/vimwiki'
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
-Plug 'benekastah/neomake'
-Plug 'rperce/JavaImp.vim', { 'for': 'java', 'via': 'ssh' }
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'airblade/vim-gitgutter'
 Plug 'tommcdo/vim-lion'
-Plug 'torbiak/probe'
-Plug 'tpope/vim-fugitive'
-Plug 'rperce/L-syntax'
-Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
-Plug '~/code/SmarterTabs'
-Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-commentary'
+Plug 'wellle/targets.vim'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'rperce/JavaImp.vim', { 'for': 'java', 'via': 'ssh' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,7 +110,7 @@ set nowrap
 set autoindent
 
 " All I want for Christmas is spaces
-" set expandtab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -188,43 +185,43 @@ let g:JavaImpPaths = $JAVA_HOME . 'jre/lib/rt.jar'
 let g:JavaImpDataDir = $HOME . '/.config/nvim/JavaImp'
 let g:JavaImpSortPkgSep = 0
 
-let g:neomake_cpp_clangcheck_maker = {
-        \ 'exe': 'clang-check',
-        \ 'args': ['%:p', '-std=c++11'],
-        \ 'errorformat':
-            \ '%-G%f:%s:,' .
-            \ '%f:%l:%c: %trror: %m,' .
-            \ '%f:%l:%c: %tarning: %m,' .
-            \ '%f:%l:%c: %m,'.
-            \ '%f:%l: %trror: %m,'.
-            \ '%f:%l: %tarning: %m,'.
-            \ '%f:%l: %m',
-        \ }
-let g:neomake_cpp_clang_maker = {
-    \ 'args': ['-fsyntax-only', '-Wall', '-Wextra', '-std=c++11'],
-    \ 'errorformat':
-        \ '%-G%f:%s:,' .
-        \ '%f:%l:%c: %trror: %m,' .
-        \ '%f:%l:%c: %tarning: %m,' .
-        \ '%f:%l:%c: %m,'.
-        \ '%f:%l: %trror: %m,'.
-        \ '%f:%l: %tarning: %m,'.
-        \ '%f:%l: %m',
-    \ }
-
-
+" let g:neomake_cpp_clangcheck_maker = {
+"         \ 'exe': 'clang-check',
+"         \ 'args': ['%:p', '-std=c++11'],
+"         \ 'errorformat':
+"             \ '%-G%f:%s:,' .
+"             \ '%f:%l:%c: %trror: %m,' .
+"             \ '%f:%l:%c: %tarning: %m,' .
+"             \ '%f:%l:%c: %m,'.
+"             \ '%f:%l: %trror: %m,'.
+"             \ '%f:%l: %tarning: %m,'.
+"             \ '%f:%l: %m',
+"         \ }
+" let g:neomake_cpp_clang_maker = {
+"     \ 'args': ['-fsyntax-only', '-Wall', '-Wextra', '-std=c++11'],
+"     \ 'errorformat':
+"         \ '%-G%f:%s:,' .
+"         \ '%f:%l:%c: %trror: %m,' .
+"         \ '%f:%l:%c: %tarning: %m,' .
+"         \ '%f:%l:%c: %m,'.
+"         \ '%f:%l: %trror: %m,'.
+"         \ '%f:%l: %tarning: %m,'.
+"         \ '%f:%l: %m',
+"     \ }
+" 
+" 
 " Neomake aaaaaaall the things
-if filereadable('makefile') || filereadable('Rakefile')
-    augroup Neomake
-        autocmd!
-        autocmd! BufWritePost * silent Neomake!
-    augroup END
-else
-    augroup Neomake
-        autocmd!
-        autocmd! BufWritePost * Neomake
-    augroup END
-end
+" if filereadable('makefile') || filereadable('Rakefile')
+"     augroup Neomake
+"         autocmd!
+"         autocmd! BufWritePost * silent Neomake!
+"     augroup END
+" else
+"     augroup Neomake
+"         autocmd!
+"         autocmd! BufWritePost * Neomake
+"     augroup END
+" end
 
 nnoremap <leader>ev :vs $MYVIMRC<CR>
 nnoremap <leader>sv :so %<CR>
@@ -249,3 +246,5 @@ set hidden
 let g:racer_cmd = "/home/robert/.cargo/bin/racer"
 let $RUST_SRC_PATH="/home/robert/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
 let g:racer_experimental_completer = 1
+
+let g:jsx_ext_required = 0
